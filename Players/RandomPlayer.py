@@ -1,10 +1,10 @@
-"""Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid actions."""
+"""Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid `ASMACAG.Game.Action.Action`."""
 import random
 from Players import Player
 
 
 class RandomPlayer(Player):
-    """Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid actions."""
+    """Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid `ASMACAG.Game.Action.Action`."""
     def __init__(self):
         super().__init__()
 
