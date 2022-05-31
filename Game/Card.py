@@ -1,3 +1,5 @@
+"""A `ASMACAG.Game.Card.Card` has a `ASMACAG.Game.CardType.CardType`. It also has a number if it is a
+`ASMACAG.Game.CardType.CardType.NUMBER`."""
 import Game
 
 

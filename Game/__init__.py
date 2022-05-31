@@ -1,3 +1,4 @@
+"""Module containing the logic to play an ASMACAG `ASMACAG.Game.Game.Game` and the classes needed for it."""
 # import all the separate files to make the Game folder act as a single module
 from Game.Action import Action
 from Game.Card import Card

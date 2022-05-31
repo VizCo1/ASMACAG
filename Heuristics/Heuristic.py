@@ -1,3 +1,5 @@
+"""Abstract base class that defines a reward for the current `ASMACAG.Players.Player.Player` given an
+`ASMACAG.Game.Observation.Observation`."""
 from abc import ABC, abstractmethod
 
 

@@ -1,4 +1,4 @@
-"""Main program that plays one game between two players."""
+"""Main program that plays a `ASMACAG.Game.Game.Game` between two `ASMACAG.Players.Player.Player`."""
 import random
 from Game import *
 from Players import *

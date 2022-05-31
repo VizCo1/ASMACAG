@@ -1,3 +1,4 @@
+"""Contains the state of a `ASMACAG.Game.Game.Game`."""
 import Game
 
 

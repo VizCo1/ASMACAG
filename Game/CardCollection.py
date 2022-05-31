@@ -1,3 +1,4 @@
+"""An ordered collection of `ASMACAG.Game.Card.Card` that can be used to define a deck, hand, table..."""
 import random
 from typing import Iterable
 

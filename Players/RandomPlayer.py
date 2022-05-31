@@ -1,3 +1,4 @@
+"""Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid actions."""
 import random
 from Players import Player
 

@@ -1,3 +1,4 @@
+"""Abstract base class for an entity with a defined behaviour for playing a `ASMACAG.Game.Game.Game`."""
 from abc import ABC, abstractmethod
 
 

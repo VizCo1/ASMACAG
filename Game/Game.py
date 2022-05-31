@@ -1,3 +1,5 @@
+"""Contains the logic for playing the ASMACAG game with certain `ASMACAG.Game.GameParameters.GameParameters`
+according to the rules defined in the `ASMACAG.Game.Rules.ForwardModel.ForwardModel` they contain. """
 import random
 import sys
 import func_timeout

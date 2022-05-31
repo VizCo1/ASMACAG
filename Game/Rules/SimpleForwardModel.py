@@ -1,3 +1,4 @@
+"""Defines a basic default set of rules for a `ASMACAG.Game.Game.Game`."""
 from typing import Union
 import Game
 from Game.Rules import ForwardModel

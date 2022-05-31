@@ -1,3 +1,5 @@
+"""Defines a simple reward for the current `ASMACAG.Players.Player.Player` given an
+`ASMACAG.Game.Observation.Observation` by using the current score difference."""
 from Heuristics import Heuristic
 
 

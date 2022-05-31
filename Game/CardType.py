@@ -1,8 +1,9 @@
+"""enum that describes the different types of `ASMACAG.Game.Card.Card`."""
 from enum import Enum
 
 
 class CardType(Enum):
-    """`enum.Enum` that describes the different types of `ASMACAG.Game.Card.Card`."""
+    """enum that describes the different types of `ASMACAG.Game.Card.Card`."""
     NUMBER = 1
     """A `ASMACAG.Game.Card.Card` that contains a number."""
     MULT2 = 2

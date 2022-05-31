@@ -1,3 +1,4 @@
+"""Abstract base class that defines the rules of a `ASMACAG.Game.Game.Game`."""
 from abc import ABC, abstractmethod
 from typing import Union
 

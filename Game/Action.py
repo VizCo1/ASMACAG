@@ -1,3 +1,7 @@
+"""An `ASMACAG.Game.Action.Action` describes the `ASMACAG.Game.Card.Card` played and on what `ASMACAG.Game.Card.Card` it
+ has been played."""
+
+
 class Action:
     """An `Action` describes the `ASMACAG.Game.Card.Card` played and on what `ASMACAG.Game.Card.Card` it has been
     played."""

@@ -1,3 +1,5 @@
+"""A `ASMACAG.Game.GameState.GameState` view for a particular `ASMACAG.Players.Player.Player` where the
+non-observable parts have been randomized."""
 import Game
 
 

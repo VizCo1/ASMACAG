@@ -1,3 +1,5 @@
+"""Contains the parameters for a `ASMACAG.Game.Game.Game`. Note that these are assumed to be static and therefore
+are always shallow copied. Do not modify them after instatiating."""
 import Game.Rules as Rules
 
 
