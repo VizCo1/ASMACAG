@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>ASMACAG.Heuristics API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Module containing different `ASMACAG.Heuristics.Heuristic.Heuristic` to evaluate a
+`ASMACAG.Game.GameState.GameState` or an …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -22,11 +23,15 @@
 <h1 class="title">Module <code>ASMACAG.Heuristics</code></h1>
 </header>
 <section id="section-intro">
+<p>Module containing different <code><a title="ASMACAG.Heuristics.Heuristic.Heuristic" href="Heuristic.html#ASMACAG.Heuristics.Heuristic.Heuristic">Heuristic</a></code> to evaluate a
+<code><a title="ASMACAG.Game.GameState.GameState" href="../Game/GameState.html#ASMACAG.Game.GameState.GameState">GameState</a></code> or an <code><a title="ASMACAG.Game.Observation.Observation" href="../Game/Observation.html#ASMACAG.Game.Observation.Observation">Observation</a></code>.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python"># import all the separate files to make the Heuristics folder act as a single module
+<pre><code class="python">&#34;&#34;&#34;Module containing different `ASMACAG.Heuristics.Heuristic.Heuristic` to evaluate a
+`ASMACAG.Game.GameState.GameState` or an `ASMACAG.Game.Observation.Observation`.&#34;&#34;&#34;
+# import all the separate files to make the Heuristics folder act as a single module
 from Heuristics.Heuristic import Heuristic
 from Heuristics.SimpleHeuristic import SimpleHeuristic</code></pre>
 </details>
@@ -36,11 +41,13 @@ from Heuristics.SimpleHeuristic import SimpleHeuristic</code></pre>
 <dl>
 <dt><code class="name"><a title="ASMACAG.Heuristics.Heuristic" href="Heuristic.html">ASMACAG.Heuristics.Heuristic</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Abstract base class that defines a reward for the current <code><a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a></code> given an
+<code><a title="ASMACAG.Game.Observation.Observation" href="../Game/Observation.html#ASMACAG.Game.Observation.Observation">Observation</a></code>.</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Heuristics.SimpleHeuristic" href="SimpleHeuristic.html">ASMACAG.Heuristics.SimpleHeuristic</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Defines a simple reward for the current <code><a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a></code> given an
+<code><a title="ASMACAG.Game.Observation.Observation" href="../Game/Observation.html#ASMACAG.Game.Observation.Observation">Observation</a></code> by using the current score …</p></div>
 </dd>
 </dl>
 </section>

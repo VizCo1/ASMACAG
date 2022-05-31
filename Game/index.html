@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>ASMACAG.Game API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Module containing the logic to play an ASMACAG `ASMACAG.Game.Game.Game` and the classes needed for it." />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -22,11 +22,13 @@
 <h1 class="title">Module <code>ASMACAG.Game</code></h1>
 </header>
 <section id="section-intro">
+<p>Module containing the logic to play an ASMACAG <code><a title="ASMACAG.Game.Game.Game" href="Game.html#ASMACAG.Game.Game.Game">Game</a></code> and the classes needed for it.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python"># import all the separate files to make the Game folder act as a single module
+<pre><code class="python">&#34;&#34;&#34;Module containing the logic to play an ASMACAG `ASMACAG.Game.Game.Game` and the classes needed for it.&#34;&#34;&#34;
+# import all the separate files to make the Game folder act as a single module
 from Game.Action import Action
 from Game.Card import Card
 from Game.CardCollection import CardCollection
@@ -42,39 +44,45 @@ from Game.Observation import Observation</code></pre>
 <dl>
 <dt><code class="name"><a title="ASMACAG.Game.Action" href="Action.html">ASMACAG.Game.Action</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>An <code><a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></code> describes the <code><a title="ASMACAG.Game.Card.Card" href="Card.html#ASMACAG.Game.Card.Card">Card</a></code> played and on what <code><a title="ASMACAG.Game.Card.Card" href="Card.html#ASMACAG.Game.Card.Card">Card</a></code> it
+has been played.</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Game.Card" href="Card.html">ASMACAG.Game.Card</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>A <code><a title="ASMACAG.Game.Card.Card" href="Card.html#ASMACAG.Game.Card.Card">Card</a></code> has a <code><a title="ASMACAG.Game.CardType.CardType" href="CardType.html#ASMACAG.Game.CardType.CardType">CardType</a></code>. It also has a number if it is a
+<code><a title="ASMACAG.Game.CardType.CardType.NUMBER" href="CardType.html#ASMACAG.Game.CardType.CardType.NUMBER">CardType.NUMBER</a></code>.</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Game.CardCollection" href="CardCollection.html">ASMACAG.Game.CardCollection</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>An ordered collection of <code><a title="ASMACAG.Game.Card.Card" href="Card.html#ASMACAG.Game.Card.Card">Card</a></code> that can be used to define a deck, hand, table&hellip;</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Game.CardType" href="CardType.html">ASMACAG.Game.CardType</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>enum that describes the different types of <code><a title="ASMACAG.Game.Card.Card" href="Card.html#ASMACAG.Game.Card.Card">Card</a></code>.</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Game.Game" href="Game.html">ASMACAG.Game.Game</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Contains the logic for playing the ASMACAG game with certain <code><a title="ASMACAG.Game.GameParameters.GameParameters" href="GameParameters.html#ASMACAG.Game.GameParameters.GameParameters">GameParameters</a></code>
+according to the rules defined in the …</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Game.GameParameters" href="GameParameters.html">ASMACAG.Game.GameParameters</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Contains the parameters for a <code><a title="ASMACAG.Game.Game.Game" href="Game.html#ASMACAG.Game.Game.Game">Game</a></code>. Note that these are assumed to be static and therefore
+are always shallow copied. Do not …</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Game.GameState" href="GameState.html">ASMACAG.Game.GameState</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Contains the state of a <code><a title="ASMACAG.Game.Game.Game" href="Game.html#ASMACAG.Game.Game.Game">Game</a></code>.</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Game.Observation" href="Observation.html">ASMACAG.Game.Observation</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>A <code><a title="ASMACAG.Game.GameState.GameState" href="GameState.html#ASMACAG.Game.GameState.GameState">GameState</a></code> view for a particular <code><a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a></code> where the
+non-observable parts have been randomized.</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Game.Rules" href="Rules/index.html">ASMACAG.Game.Rules</a></code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Module containing the rules to play an ASMACAG <code><a title="ASMACAG.Game.Game.Game" href="Game.html#ASMACAG.Game.Game.Game">Game</a></code> as
+<code><a title="ASMACAG.Game.Rules.ForwardModel.ForwardModel" href="Rules/ForwardModel.html#ASMACAG.Game.Rules.ForwardModel.ForwardModel">ForwardModel</a></code>.</p></div>
 </dd>
 </dl>
 </section>
