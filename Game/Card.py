@@ -39,4 +39,7 @@ class Card:
 
     def __eq__(self, other):
         return self.card_type == other.card_type and self.number == other.number
+
+    def __hash__(self):
+        return self.number + len(Game.CardType) + 1 if self.card_type == Game.CardType.NUMBER else self.card_type.value
 # endregion

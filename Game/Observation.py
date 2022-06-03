@@ -72,9 +72,9 @@ class Observation:
         actions = []
         hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
         
-        for card in hand.get_cards():
+        for card in set(hand.get_cards()):
             if card.get_type() == Game.CardType.NUMBER:
-                for board_card in self.board.get_cards():
+                for board_card in set(self.board.get_cards()):
                     actions.append(Game.Action(card, board_card))
             else:
                 actions.append(Game.Action(card))
