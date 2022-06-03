@@ -4,3 +4,4 @@
 from Players.Player import Player
 from Players.RandomPlayer import RandomPlayer
 from Players.OSLAPlayer import OSLAPlayer
+from Players.HumanPlayer import HumanPlayer
