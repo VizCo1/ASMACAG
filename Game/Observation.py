@@ -1,5 +1,7 @@
 """A `ASMACAG.Game.GameState.GameState` view for a particular `ASMACAG.Players.Player.Player` where the
 non-observable parts have been randomized."""
+import random
+
 import Game
 
 
@@ -79,6 +81,16 @@ class Observation:
             else:
                 actions.append(Game.Action(card))
         return actions
+
+    def get_random_action(self) -> "ASMACAG.Game.Action.Action":
+        """Gets a random `ASMACAG.Game.Action.Action` that is currently valid."""
+        hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
+
+        hand_card = random.choice(hand)
+        if hand_card.get_type() == Game.CardType.NUMBER:
+            return Game.Action(hand_card, random.choice(self.board))
+        else:
+            return Game.Action(hand_card)
 # endregion
 
 # region Overrides

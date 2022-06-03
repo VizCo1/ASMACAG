@@ -12,7 +12,7 @@ class RandomPlayer(Player):
     def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: int) -> "ASMACAG.Game.Action.Action":
         """Returns a randomly selected valid `ASMACAG.Game.Action.Action` to play given an
         `ASMACAG.Game.Observation.Observation`."""
-        return random.choice(observation.get_actions())
+        return observation.get_random_action()
 # endregion
 
 # region Overrides
