@@ -6,7 +6,7 @@ import Game
 class Observation:
     """A `ASMACAG.Game.GameState.GameState` view for a particular `ASMACAG.Players.Player.Player` where the
     non-observable parts have been randomized."""
-    def __init__(self, game_state: "ASMACAG.Game.GameState.GameState"):
+    def __init__(self, game_state: "ASMACAG.Game.GameState.GameState", randomise_hidden_info: bool = True):
         if game_state is not None:
             self.game_parameters = game_state.game_parameters
             self.current_turn = game_state.current_turn
@@ -19,7 +19,8 @@ class Observation:
             self.player_1_score = game_state.player_1_score
             self.factor = game_state.factor
             self.action_points_left = game_state.action_points_left
-            self.randomise()
+            if randomise_hidden_info:
+                self.randomise()
 
 # region Methods
     def clone(self) -> "Observation":

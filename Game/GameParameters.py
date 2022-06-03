@@ -17,6 +17,7 @@ class GameParameters:
                  amount_cards_mult2=6,
                  amount_cards_div2=6,
                  seed=None,
+                 randomise_hidden_info=True,
                  forward_model: Rules.ForwardModel = Rules.SimpleForwardModel()):
         self.amount_cards_on_hand = amount_cards_on_hand
         self.amount_cards_on_board = amount_cards_on_board
@@ -28,6 +29,7 @@ class GameParameters:
         self.amount_cards_mult2 = amount_cards_mult2
         self.amount_cards_div2 = amount_cards_div2
         self.seed = seed
+        self.randomise_hidden_info = randomise_hidden_info
         self.forward_model = forward_model
 
     def __str__(self):

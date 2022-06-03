@@ -21,7 +21,7 @@ class GameState:
     def get_observation(self) -> "ASMACAG.Game.Observation.Observation":
         """Gets a `ASMACAG.Game.Observation.Observation` representing this `GameState` with its non-observable parts
         randomised."""
-        return Game.Observation(self)
+        return Game.Observation(self, self.game_parameters.randomise_hidden_info)
 
     def reset(self) -> None:
         """Resets and sets up the `GameState` so that is ready for a new `ASMACAG.Game.Game.Game`. Must be called by
