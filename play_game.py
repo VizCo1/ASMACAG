@@ -2,14 +2,15 @@
 import random
 from Game import *
 from Players import *
+from Heuristics import *
 
 if __name__ == '__main__':
-    budget = 10                                      # time to think for the players (in seconds)
+    budget = 2                                       # time to think for the players (in seconds)
     verbose = True                                   # whether to print messages
-    enforce_time = True                              # whether the player time to think is going to be enforced
+    enforce_time = False                             # whether the player time to think is going to be enforced
     save_name = "out/sample_output.txt"              # where the game is going to be saved, can be None
     parameters = GameParameters()                    # parameters for the game itself, set seed here to repeat a game
-    players = [HumanPlayer(), OSLAPlayer()]          # list of players
+    players = [OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 10)]         # list of players
 
     game = Game(parameters)
     game.set_save_file(save_name)
@@ -24,3 +25,5 @@ if __name__ == '__main__':
         else:
             print("*** There is a Tie.")
         print("*** ------------------------------------------------- ")
+    else:
+        print(f"The winner is the player: {game.get_winner()!s} [{players[game.get_winner()]!s}]")
