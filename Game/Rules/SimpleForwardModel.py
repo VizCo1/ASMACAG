@@ -21,8 +21,8 @@ class SimpleForwardModel(ForwardModel):
 
         if action.get_played_card() not in hand:
             # invalid action: selected card is not in hand, give min score and remove first card in hand
-            game_state.discard_deck.add_card(hand[0])
-            hand.remove(hand[0])
+            game_state.discard_deck.add_card(hand.get_cards()[0])
+            hand.remove(hand.get_cards()[0])
             self.give_min_score(game_state)
             return False
         else:
@@ -64,9 +64,7 @@ class SimpleForwardModel(ForwardModel):
                                         "ASMACAG.Game.Observation.Observation]") -> None:
         """Moves the `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` when the
         `ASMACAG.Players.Player.Player` turn is finished."""
-        if game_state.action_points_left <= 0\
-                or (game_state.current_turn == 0 and game_state.player_0_hand.get_empty())\
-                or (game_state.current_turn == 1 and game_state.player_1_hand.get_empty()):
+        if self.is_turn_finished(game_state):
             game_state.current_turn = (game_state.current_turn + 1) % 2
             game_state.action_points_left = game_state.game_parameters.amount_action_points
 
@@ -76,6 +74,14 @@ class SimpleForwardModel(ForwardModel):
         condition and returns whether it has finished."""
         return game_state.player_0_hand.get_empty() and game_state.player_1_hand.get_empty() \
             or game_state.board.get_empty()
+
+    def is_turn_finished(self, game_state: "Union[ASMACAG.Game.GameState.GameState,"
+                                           "ASMACAG.Game.Observation.Observation]") -> bool:
+        """Tests a `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` against the end turn
+        condition and returns whether the turn has finished."""
+        return game_state.action_points_left <= 0 \
+            or (game_state.current_turn == 0 and game_state.player_0_hand.get_empty()) \
+            or (game_state.current_turn == 1 and game_state.player_1_hand.get_empty())
 
     def give_min_score(self, game_state: "Union[ASMACAG.Game.GameState.GameState,"
                                          "ASMACAG.Game.Observation.Observation]") -> None:

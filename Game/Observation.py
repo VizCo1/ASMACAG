@@ -86,9 +86,9 @@ class Observation:
         """Gets a random `ASMACAG.Game.Action.Action` that is currently valid."""
         hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
 
-        hand_card = random.choice(hand)
+        hand_card = random.choice(hand.get_cards())
         if hand_card.get_type() == Game.CardType.NUMBER:
-            return Game.Action(hand_card, random.choice(self.board))
+            return Game.Action(hand_card, random.choice(self.board.get_cards()))
         else:
             return Game.Action(hand_card)
 # endregion

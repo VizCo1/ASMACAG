@@ -73,7 +73,7 @@ class Game:
             print("---------------------------------------- ")
             print(f"{self.game_state}\n")
 
-        while self.game_state.action_points_left > 0:
+        while not self.game_state.game_parameters.forward_model.is_turn_finished(self.game_state):
             # Observable part of the GameState
             observation = self.game_state.get_observation()
 

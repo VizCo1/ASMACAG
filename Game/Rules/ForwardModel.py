@@ -26,3 +26,10 @@ class ForwardModel(ABC):
         """Tests a `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` against a finish
         condition and returns whether it has finished."""
         pass
+
+    @abstractmethod
+    def is_turn_finished(self, game_state: "Union[ASMACAG.Game.GameState.GameState,"
+                                           "ASMACAG.Game.Observation.Observation]") -> bool:
+        """Tests a `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` against the end turn
+        condition and returns whether the turn has finished."""
+        pass
