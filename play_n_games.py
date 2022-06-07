@@ -12,9 +12,9 @@ if __name__ == '__main__':
     parameters = GameParameters()                       # parameters for the game itself
     save_name = f"out/oe.csv"                         # where the games' summary is going to be saved
     save_file = open(save_name, "w")
-    initial_players = [OSLAPlayer(), OEPlayer(30, 0.15, 0.4, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(15, 0.15, 0.4, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(60, 0.15, 0.4, SimpleHeuristic()),
+    initial_players = [OSLAPlayer(), OEPlayer(50, 0.15, 0.4, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(100, 0.15, 0.4, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(150, 0.15, 0.4, SimpleHeuristic()),
                        OSLAPlayer(), OEPlayer(30, 0.5, 0.4, SimpleHeuristic()),
                        OSLAPlayer(), OEPlayer(30, 0.15, 0.4, SimpleHeuristic()),
                        OSLAPlayer(), OEPlayer(30, 0.30, 0.4, SimpleHeuristic()),

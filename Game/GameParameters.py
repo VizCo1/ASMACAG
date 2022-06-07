@@ -7,15 +7,15 @@ class GameParameters:
     """Contains the parameters for a `ASMACAG.Game.Game.Game`. Note that these are assumed to be static and therefore
     are always shallow copied. Do not modify them after instatiating."""
     def __init__(self,
-                 amount_cards_on_hand=6,
-                 amount_cards_on_board=12,
+                 amount_cards_on_hand=9,
+                 amount_cards_on_board=20,
                  amount_action_points=3,
                  min_number=1,
                  max_number=6,
-                 amount_cards_limit_number=4,
-                 amount_cards_normal_number=6,
-                 amount_cards_mult2=5,
-                 amount_cards_div2=5,
+                 amount_cards_limit_number=5,
+                 amount_cards_normal_number=8,
+                 amount_cards_mult2=6,
+                 amount_cards_div2=6,
                  seed=None,
                  randomise_hidden_info=True,
                  forward_model: Rules.ForwardModel = Rules.SimpleForwardModel()):
