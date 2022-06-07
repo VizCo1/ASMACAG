@@ -16,17 +16,16 @@ class MCTSPlayer(Player):
         super().__init__()
 
 # region Methods
-    def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: int) -> "ASMACAG.Game.Action.Action":
+    def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: float) -> "ASMACAG.Game.Action.Action":
         """Computes a list of `ASMACAG.Game.Action.Action` for a complete turn using the Monte Carlo Tree Search
         algorithm and returns them in order."""
         if observation.action_points_left == observation.game_parameters.amount_action_points:
             self.turn.clear()
             self.compute_turn(observation, budget)
-
         return self.turn.pop(0)
 
     def compute_turn(self, observation: "ASMACAG.Game.Observation.Observation",
-                     budget: int) -> None:
+                     budget: float) -> None:
         """Computes a list of `ASMACAG.Game.Action.Action` for a complete turn using the Monte Carlo Tree Search
         algorithm and sets it as the turn."""
         # initial tree setup

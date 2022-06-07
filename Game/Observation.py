@@ -69,6 +69,9 @@ class Observation:
             for _ in range(self.game_parameters.amount_cards_on_hand):
                 self.player_0_hand.add_card(self.main_deck.draw())
 
+# endregion
+
+# region Getters and Setters
     def get_actions(self) -> "list[ASMACAG.Game.Action.Action]":
         """Gets a list of the currently possible `ASMACAG.Game.Action.Action`."""
         actions = []
@@ -77,9 +80,9 @@ class Observation:
         for card in set(hand.get_cards()):
             if card.get_type() == Game.CardType.NUMBER:
                 for board_card in set(self.board.get_cards()):
-                    actions.append(Game.Action(card, board_card))
+                    actions.append(Game.Action(card.clone(), board_card.clone()))
             else:
-                actions.append(Game.Action(card))
+                actions.append(Game.Action(card.clone()))
         return actions
 
     def get_random_action(self) -> "ASMACAG.Game.Action.Action":
@@ -88,9 +91,9 @@ class Observation:
 
         hand_card = random.choice(hand.get_cards())
         if hand_card.get_type() == Game.CardType.NUMBER:
-            return Game.Action(hand_card, random.choice(self.board.get_cards()))
+            return Game.Action(hand_card.clone(), random.choice(self.board.get_cards()).clone())
         else:
-            return Game.Action(hand_card)
+            return Game.Action(hand_card.clone())
 # endregion
 
 # region Overrides

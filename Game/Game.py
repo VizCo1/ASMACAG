@@ -20,7 +20,7 @@ class Game:
         """Resets the `ASMACAG.Game.GameState.GameState` so that is ready for a new `Game`."""
         self.game_state.reset()
 
-    def run(self, player_0: "ASMACAG.Players.Player.Player", player_1: "ASMACAG.Players.Player.Player", budget: int,
+    def run(self, player_0: "ASMACAG.Players.Player.Player", player_1: "ASMACAG.Players.Player.Player", budget: float,
             verbose: bool, enforce_time: bool) -> None:
         """Runs an ASMACAG `Game`."""
         save_str = ""
@@ -63,7 +63,7 @@ class Game:
             self.save_file.write(save_str)
             self.save_file.close()
 
-    def play_turn(self, player: "ASMACAG.Players.Player.Player", budget: int, verbose: bool,
+    def play_turn(self, player: "ASMACAG.Players.Player.Player", budget: float, verbose: bool,
                   enforce_time: bool) -> "ASMACAG.Game.Action.Action":
         """Performs a `ASMACAG.Players.Player.Player` turn."""
         if verbose:
@@ -104,7 +104,7 @@ class Game:
             return action
 
     def think(self, player: "ASMACAG.Players.Player.Player", observation: "ASMACAG.Game.Observation.Observation",
-              budget: int) -> "ASMACAG.Game.Action.Action":
+              budget: float) -> "ASMACAG.Game.Action.Action":
         """Requires the `ASMACAG.Players.Player.Player` to decide, given an `ASMACAG.Game.Observation.Observation`,
         what `ASMACAG.Game.Action.Action` to play and returns it."""
         return player.think(observation, budget)

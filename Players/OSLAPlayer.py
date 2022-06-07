@@ -11,7 +11,7 @@ class OSLAPlayer(Player):
     def __init__(self):
         self.heuristic = SimpleHeuristic()
 
-    def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: int) -> "ASMACAG.Game.Action.Action":
+    def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: float) -> "ASMACAG.Game.Action.Action":
         """Returns a randomly selected valid `ASMACAG.Game.Action.Action` to play given an
         `ASMACAG.Game.Observation.Observation`."""
         best_reward = -math.inf

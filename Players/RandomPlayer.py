@@ -8,7 +8,7 @@ class RandomPlayer(Player):
         super().__init__()
 
 # region Methods
-    def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: int) -> "ASMACAG.Game.Action.Action":
+    def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: float) -> "ASMACAG.Game.Action.Action":
         """Returns a randomly selected valid `ASMACAG.Game.Action.Action` to play given an
         `ASMACAG.Game.Observation.Observation`."""
         return observation.get_random_action()

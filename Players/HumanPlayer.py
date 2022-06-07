@@ -9,7 +9,7 @@ class HumanPlayer(Player):
         super().__init__()
 
 # region Methods
-    def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: int) -> "ASMACAG.Game.Action.Action":
+    def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: float) -> "ASMACAG.Game.Action.Action":
         """Requests the user to decide what `ASMACAG.Game.Action.Action` to play using the console."""
         actions = observation.get_actions()
         print("Actions that can be played: ")

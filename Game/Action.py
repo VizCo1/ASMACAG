@@ -20,7 +20,10 @@ class Action:
         """Deep copies the `Action` contents into another one."""
         self.played_card.copy_into(other.played_card)
         if self.board_card is not None:
-            self.board_card.copy_into(other.played_card)
+            if other.board_card is None:
+                other.board_card = self.board_card.clone()
+            else:
+                self.board_card.copy_into(other.board_card)
         else:
             other.board_card = None
 # endregion
