@@ -69,6 +69,13 @@ class Observation:
             for _ in range(self.game_parameters.amount_cards_on_hand):
                 self.player_0_hand.add_card(self.main_deck.draw())
 
+    def is_action_valid(self, action: "ASMACAG.Game.Action.Action") -> bool:
+        """Checks if the given `ASMACAG.Game.Action.Action` is currently valid."""
+        hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
+        if action.get_played_card().get_type() == Game.CardType.NUMBER:
+            return action.get_played_card() in hand.get_cards() and action.board_card in self.board.get_cards()
+        else:
+            return action.get_played_card() in hand.get_cards()
 # endregion
 
 # region Getters and Setters

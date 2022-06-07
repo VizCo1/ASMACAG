@@ -5,21 +5,22 @@ from Players import *
 from Heuristics import *
 
 if __name__ == '__main__':
-    amount_of_games = 10                              # number of games to play
+    amount_of_games = 1000                              # number of games to play
     budget = 1                                          # time to think for the players (in seconds)
-    verbose = True                                     # whether to print messages
+    verbose = False                                     # whether to print messages
     enforce_time = True                                 # whether the player time to think is going to be enforced
     parameters = GameParameters()                       # parameters for the game itself
-    save_name = f"out/mcts.csv"                         # where the games' summary is going to be saved
+    save_name = f"out/oe.csv"                         # where the games' summary is going to be saved
     save_file = open(save_name, "w")
-    initial_players = [OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 0.5),
-                       OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 1.414),
-                       OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 3),
-                       OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 8),
-                       OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 14),
-                       OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 20),
-                       OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 30),
-                       OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 45)]
+    initial_players = [OSLAPlayer(), OEPlayer(30, 0.15, 0.4, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(15, 0.15, 0.4, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(60, 0.15, 0.4, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(30, 0.5, 0.4, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(30, 0.15, 0.4, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(30, 0.30, 0.4, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(30, 0.15, 0.15, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(30, 0.15, 0.4, SimpleHeuristic()),
+                       OSLAPlayer(), OEPlayer(30, 0.15, 0.7, SimpleHeuristic())]
 
     while len(initial_players) > 0:
         players = initial_players[:2].copy()
