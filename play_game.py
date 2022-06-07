@@ -1,8 +1,8 @@
 """Main program that plays a `ASMACAG.Game.Game.Game` between two `ASMACAG.Players.Player.Player`."""
-import random
 from Game import *
-from Players import *
 from Heuristics import *
+from Players import *
+
 
 if __name__ == '__main__':
     budget = 2                                       # time to think for the players (in seconds)

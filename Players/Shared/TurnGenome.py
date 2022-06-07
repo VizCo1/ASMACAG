@@ -2,8 +2,6 @@
 `ASMACAG.Players.OEPlayer.OEPlayer` and `ASMACAG.Players.NTBEAPlayer.NTBEAPlayer`."""
 import random
 
-from Game import CardType
-
 
 class TurnGenome:
     """Genome class representing a list of `ASMACAG.Game.Action.Action` composing a turn for use in both
@@ -26,7 +24,7 @@ class TurnGenome:
 
     def crossover(self, parent_a: "TurnGenome", parent_b: "TurnGenome",
                   observation: "ASMACAG.Game.Observation.Observation") -> None:
-        """Fills up this `ASMACAG.Players.TurnGenome.TurnGenome` with `ASMACAG.Game.Action.Action` from the parents
+        """Fills up this `ASMACAG.Players.TurnGenome.TurnGenome` with `ASMACAG.Game.Action.Action` from both parents
         while making sure that the resulting turn is valid. Note that the observation state is not preserved."""
         self.reward = 0
         for i in range(observation.game_parameters.amount_action_points):
@@ -56,7 +54,7 @@ class TurnGenome:
     def mutate_at_random_index(self, observation: "ASMACAG.Game.Observation.Observation") -> None:
         """Mutates this `ASMACAG.Players.TurnGenome.TurnGenome` at a random `ASMACAG.Game.Action.Action` of the turn
         while keeping the whole turn valid. Note that the observation state is not preserved."""
-        mutation_index = random.randint(0, len(self.actions) - 1)
+        mutation_index = random.randrange(len(self.actions))
         for i in range(len(self.actions)):
             if i == mutation_index:
                 self.actions[i] = observation.get_random_action()

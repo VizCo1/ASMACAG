@@ -1,5 +1,4 @@
 """Entity that lets a human player play an `ASMACAG.Game.Game.Game` by using console inputs."""
-import random
 from Players import Player
 
 

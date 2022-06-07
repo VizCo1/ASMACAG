@@ -43,12 +43,6 @@ class OEPlayer(Player):
             genome = TurnGenome()
             observation.copy_into(new_observation)
             genome.random(new_observation)
-            if genome.get_actions()[0].get_played_card().get_type() == CardType.NUMBER and genome.get_actions()[0].get_board_card() is None:
-                return
-            if genome.get_actions()[1].get_played_card().get_type() == CardType.NUMBER and genome.get_actions()[1].get_board_card() is None:
-                return
-            if genome.get_actions()[2].get_played_card().get_type() == CardType.NUMBER and genome.get_actions()[2].get_board_card() is None:
-                return
             population.append(genome)
             killed.append(genome)
 

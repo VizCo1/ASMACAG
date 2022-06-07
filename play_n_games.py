@@ -4,6 +4,7 @@ from Game import *
 from Players import *
 from Heuristics import *
 
+
 if __name__ == '__main__':
     amount_of_games = 1000                              # number of games to play
     budget = 1                                          # time to think for the players (in seconds)
