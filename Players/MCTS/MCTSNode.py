@@ -2,6 +2,7 @@
 import math
 import random
 import sys
+from typing import Optional
 
 
 class MCTSNode:
@@ -61,8 +62,10 @@ class MCTSNode:
         """Returns the average reward of the `Node`"""
         return self.reward / self.visits if self.visits > 0 else -math.inf
 
-    def get_best_child_by_average(self) -> "MCTSNode":
+    def get_best_child_by_average(self) -> "Optional[MCTSNode]":
         """Returns the best child of the `Node` by average reward"""
+        if len(self.children) == 0:
+            return None
         best_child = self.children[0]
         best_average_reward = best_child.get_average_reward()
         for child in self.children:

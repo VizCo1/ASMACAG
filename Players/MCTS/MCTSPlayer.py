@@ -35,7 +35,7 @@ class MCTSPlayer(Player):
         current_node = root
 
         # main loop
-        while time.time() - t0 < budget - 0.001:
+        while time.time() - t0 < budget - 0.01:
             best_child = current_node.get_best_child_by_ucb(self.c_value)
             if best_child.get_amount_of_children() > 0:
                 current_node = best_child
@@ -50,7 +50,7 @@ class MCTSPlayer(Player):
         current_node = root
         for i in range(observation.game_parameters.amount_action_points):
             best_child = current_node.get_best_child_by_average()
-            self.turn.append(best_child.get_action())
+            self.turn.append(best_child.get_action() if best_child is not None else None)
             current_node = best_child
 # endregion
 
