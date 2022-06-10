@@ -47,7 +47,7 @@ class OEPlayer(Player):
             killed.append(genome)
 
         # main loop
-        while time.time() - t0 < budget - 0.001:
+        while time.time() - t0 < budget - 0.05:
             # evaluate the new genomes
             for genome in killed:
                 observation.copy_into(new_observation)

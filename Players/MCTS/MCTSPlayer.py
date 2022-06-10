@@ -35,7 +35,10 @@ class MCTSPlayer(Player):
         current_node = root
 
         # main loop
-        while time.time() - t0 < budget - 0.01:
+        # note that the 0.12 value must be enough to transverse the tree, so low spec computers or more complex rule
+        # sets and parameters may need it bumped up, tested working properly with the default parameters on an
+        # IntelCore i7-4790 CPU @ 3.60GHz running Ubuntu 20.04.4 LTS and Python 3.9.7
+        while time.time() - t0 < budget - 0.12:
             best_child = current_node.get_best_child_by_ucb(self.c_value)
             if best_child.get_amount_of_children() > 0:
                 current_node = best_child
