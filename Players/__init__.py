@@ -7,3 +7,4 @@ from Players.OSLAPlayer import OSLAPlayer
 from Players.HumanPlayer import HumanPlayer
 from Players.MCTS import MCTSPlayer
 from Players.OEPlayer import OEPlayer
+from Players.NTBEA import NTBEAPlayer

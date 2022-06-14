@@ -41,5 +41,6 @@ class Card:
         return isinstance(other, Card) and other.card_type == other.card_type and self.number == other.number
 
     def __hash__(self):
-        return self.number + len(Game.CardType) + 1 if self.card_type == Game.CardType.NUMBER else self.card_type.value
+        # note that this may not generate a unique hash for parameter sets that are not the default ones
+        return self.number + 1 if self.card_type == Game.CardType.NUMBER else self.card_type.value - 2
 # endregion

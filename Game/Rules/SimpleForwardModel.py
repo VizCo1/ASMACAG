@@ -19,7 +19,13 @@ class SimpleForwardModel(ForwardModel):
         else:
             hand = game_state.player_1_hand
 
-        if action.get_played_card() not in hand:
+        if action is None:
+            # invalid action: no action returned
+            game_state.discard_deck.add_card(hand.get_cards()[0])
+            hand.remove(hand.get_cards()[0])
+            self.give_min_score(game_state)
+            return False
+        elif action.get_played_card() not in hand:
             # invalid action: selected card is not in hand, give min score and remove first card in hand
             game_state.discard_deck.add_card(hand.get_cards()[0])
             hand.remove(hand.get_cards()[0])

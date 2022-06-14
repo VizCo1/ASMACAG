@@ -10,7 +10,7 @@ if __name__ == '__main__':
     enforce_time = False                             # whether the player time to think is going to be enforced
     save_name = "out/sample_output.txt"              # where the game is going to be saved, can be None
     parameters = GameParameters()                    # parameters for the game itself, set seed here to repeat a game
-    players = [OSLAPlayer(), OEPlayer(30, 0.15, 0.4, SimpleHeuristic())]         # list of players
+    players = [RandomPlayer(), OSLAPlayer()]         # list of players
 
     game = Game(parameters)
     game.set_save_file(save_name)

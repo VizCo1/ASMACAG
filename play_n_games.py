@@ -11,17 +11,23 @@ if __name__ == '__main__':
     verbose = False                                     # whether to print messages
     enforce_time = True                                 # whether the player time to think is going to be enforced
     parameters = GameParameters()                       # parameters for the game itself
-    save_name = f"out/oe.csv"                         # where the games' summary is going to be saved
+    save_name = f"out/ntbea.csv"                        # where the games' summary is going to be saved
     save_file = open(save_name, "w")
-    initial_players = [OSLAPlayer(), OEPlayer(50, 0.15, 0.4, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(100, 0.15, 0.4, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(150, 0.15, 0.4, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(30, 0.5, 0.4, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(30, 0.15, 0.4, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(30, 0.30, 0.4, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(30, 0.15, 0.15, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(30, 0.15, 0.4, SimpleHeuristic()),
-                       OSLAPlayer(), OEPlayer(30, 0.15, 0.7, SimpleHeuristic())]
+    dimensions = [38, 38, 38]
+    initial_players = [NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 500), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 20, 0.3, 500), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 50, 0.3, 500), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 500, 0.3, 500), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 1000, 0.3, 500), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.05, 500), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.15, 500), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.55, 500), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.8, 500), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 50), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 100), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 1000), OSLAPlayer(),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 3000), OSLAPlayer()]
+
 
     while len(initial_players) > 0:
         players = initial_players[:2].copy()
