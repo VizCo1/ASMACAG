@@ -11,23 +11,29 @@ if __name__ == '__main__':
     verbose = False                                     # whether to print messages
     enforce_time = True                                 # whether the player time to think is going to be enforced
     parameters = GameParameters()                       # parameters for the game itself
-    save_name = f"out/ntbea.csv"                        # where the games' summary is going to be saved
+    save_name = f"out/final.csv"                  # where the games' summary is going to be saved
     save_file = open(save_name, "w")
     dimensions = [38, 38, 38]
-    initial_players = [NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 500), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 20, 0.3, 500), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 50, 0.3, 500), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 500, 0.3, 500), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 1000, 0.3, 500), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.05, 500), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.15, 500), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.55, 500), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.8, 500), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 50), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 100), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 1000), OSLAPlayer(),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 100, 0.3, 3000), OSLAPlayer()]
+    initial_players = [RandomPlayer(), OSLAPlayer(),
 
+                       RandomPlayer(), MCTSPlayer(SimpleHeuristic(), 8),
+
+                       RandomPlayer(), OEPlayer(125, 0.15, 0.15, SimpleHeuristic()),
+
+                       RandomPlayer(), NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 5, 0.55, 1000),
+
+                       OSLAPlayer(), MCTSPlayer(SimpleHeuristic(), 8),
+
+                       OSLAPlayer(), OEPlayer(125, 0.15, 0.15, SimpleHeuristic()),
+
+                       OSLAPlayer(), NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 5, 0.55, 1000),
+
+                       MCTSPlayer(SimpleHeuristic(), 8), OEPlayer(125, 0.15, 0.15, SimpleHeuristic()),
+
+                       MCTSPlayer(SimpleHeuristic(), 8), NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 5, 0.55, 1000),
+
+                       OEPlayer(125, 0.15, 0.15, SimpleHeuristic()),
+                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 5, 0.55, 1000)]
 
     while len(initial_players) > 0:
         players = initial_players[:2].copy()
@@ -77,5 +83,3 @@ if __name__ == '__main__':
         initial_players.pop(0)
         initial_players.pop(0)
     save_file.close()
-
-
