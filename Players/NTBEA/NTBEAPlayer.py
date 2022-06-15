@@ -68,7 +68,7 @@ class NTBEAPlayer:
         t0 = time.time()
         current, score = self.valid_initialization(observation, initializations)
         new_observation = observation.clone()
-        while time.time() - t0 < budget - 0.001:
+        while time.time() - t0 < budget - 0.01:
             population = self.get_neighbours(current, self.n_neighbours, self.mutation_probability)  # get neigbours
             new_current = self.get_best_individual(population)  # Get best neighbour using bandits
             observation.copy_into(new_observation)
