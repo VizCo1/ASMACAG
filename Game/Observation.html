@@ -31,13 +31,14 @@ non-observable parts have been randomized.</p>
 </summary>
 <pre><code class="python">&#34;&#34;&#34;A `ASMACAG.Game.GameState.GameState` view for a particular `ASMACAG.Players.Player.Player` where the
 non-observable parts have been randomized.&#34;&#34;&#34;
+import random
 import Game
 
 
 class Observation:
     &#34;&#34;&#34;A `ASMACAG.Game.GameState.GameState` view for a particular `ASMACAG.Players.Player.Player` where the
     non-observable parts have been randomized.&#34;&#34;&#34;
-    def __init__(self, game_state: &#34;ASMACAG.Game.GameState.GameState&#34;):
+    def __init__(self, game_state: &#34;ASMACAG.Game.GameState.GameState&#34;, randomise_hidden_info: bool = True):
         if game_state is not None:
             self.game_parameters = game_state.game_parameters
             self.current_turn = game_state.current_turn
@@ -50,7 +51,8 @@ class Observation:
             self.player_1_score = game_state.player_1_score
             self.factor = game_state.factor
             self.action_points_left = game_state.action_points_left
-            self.randomise()
+            if randomise_hidden_info:
+                self.randomise()
 
 # region Methods
     def clone(self) -&gt; &#34;Observation&#34;:
@@ -97,18 +99,38 @@ class Observation:
             for _ in range(self.game_parameters.amount_cards_on_hand):
                 self.player_0_hand.add_card(self.main_deck.draw())
 
+    def is_action_valid(self, action: &#34;ASMACAG.Game.Action.Action&#34;) -&gt; bool:
+        &#34;&#34;&#34;Checks if the given `ASMACAG.Game.Action.Action` is currently valid.&#34;&#34;&#34;
+        hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
+        if action.get_played_card().get_type() == Game.CardType.NUMBER:
+            return action.get_played_card() in hand.get_cards() and action.get_board_card() in self.board.get_cards()
+        else:
+            return action.get_played_card() in hand.get_cards()
+# endregion
+
+# region Getters and Setters
     def get_actions(self) -&gt; &#34;list[ASMACAG.Game.Action.Action]&#34;:
         &#34;&#34;&#34;Gets a list of the currently possible `ASMACAG.Game.Action.Action`.&#34;&#34;&#34;
         actions = []
         hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
         
-        for card in hand.get_cards():
+        for card in set(hand.get_cards()):
             if card.get_type() == Game.CardType.NUMBER:
-                for board_card in self.board.get_cards():
-                    actions.append(Game.Action(card, board_card))
+                for board_card in set(self.board.get_cards()):
+                    actions.append(Game.Action(card.clone(), board_card.clone()))
             else:
-                actions.append(Game.Action(card))
+                actions.append(Game.Action(card.clone()))
         return actions
+
+    def get_random_action(self) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+        &#34;&#34;&#34;Gets a random `ASMACAG.Game.Action.Action` that is currently valid.&#34;&#34;&#34;
+        hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
+
+        hand_card = random.choice(hand.get_cards())
+        if hand_card.get_type() == Game.CardType.NUMBER:
+            return Game.Action(hand_card.clone(), random.choice(self.board.get_cards()).clone())
+        else:
+            return Game.Action(hand_card.clone())
 # endregion
 
 # region Overrides
@@ -135,7 +157,7 @@ class Observation:
 <dl>
 <dt id="ASMACAG.Game.Observation.Observation"><code class="flex name class">
 <span>class <span class="ident">Observation</span></span>
-<span>(</span><span>game_state: <a title="ASMACAG.Game.GameState.GameState" href="GameState.html#ASMACAG.Game.GameState.GameState">GameState</a>)</span>
+<span>(</span><span>game_state: <a title="ASMACAG.Game.GameState.GameState" href="GameState.html#ASMACAG.Game.GameState.GameState">GameState</a>, randomise_hidden_info: bool = True)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>A <code><a title="ASMACAG.Game.GameState.GameState" href="GameState.html#ASMACAG.Game.GameState.GameState">GameState</a></code> view for a particular <code><a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a></code> where the
@@ -147,7 +169,7 @@ non-observable parts have been randomized.</p></div>
 <pre><code class="python">class Observation:
     &#34;&#34;&#34;A `ASMACAG.Game.GameState.GameState` view for a particular `ASMACAG.Players.Player.Player` where the
     non-observable parts have been randomized.&#34;&#34;&#34;
-    def __init__(self, game_state: &#34;ASMACAG.Game.GameState.GameState&#34;):
+    def __init__(self, game_state: &#34;ASMACAG.Game.GameState.GameState&#34;, randomise_hidden_info: bool = True):
         if game_state is not None:
             self.game_parameters = game_state.game_parameters
             self.current_turn = game_state.current_turn
@@ -160,7 +182,8 @@ non-observable parts have been randomized.</p></div>
             self.player_1_score = game_state.player_1_score
             self.factor = game_state.factor
             self.action_points_left = game_state.action_points_left
-            self.randomise()
+            if randomise_hidden_info:
+                self.randomise()
 
 # region Methods
     def clone(self) -&gt; &#34;Observation&#34;:
@@ -207,18 +230,38 @@ non-observable parts have been randomized.</p></div>
             for _ in range(self.game_parameters.amount_cards_on_hand):
                 self.player_0_hand.add_card(self.main_deck.draw())
 
+    def is_action_valid(self, action: &#34;ASMACAG.Game.Action.Action&#34;) -&gt; bool:
+        &#34;&#34;&#34;Checks if the given `ASMACAG.Game.Action.Action` is currently valid.&#34;&#34;&#34;
+        hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
+        if action.get_played_card().get_type() == Game.CardType.NUMBER:
+            return action.get_played_card() in hand.get_cards() and action.get_board_card() in self.board.get_cards()
+        else:
+            return action.get_played_card() in hand.get_cards()
+# endregion
+
+# region Getters and Setters
     def get_actions(self) -&gt; &#34;list[ASMACAG.Game.Action.Action]&#34;:
         &#34;&#34;&#34;Gets a list of the currently possible `ASMACAG.Game.Action.Action`.&#34;&#34;&#34;
         actions = []
         hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
         
-        for card in hand.get_cards():
+        for card in set(hand.get_cards()):
             if card.get_type() == Game.CardType.NUMBER:
-                for board_card in self.board.get_cards():
-                    actions.append(Game.Action(card, board_card))
+                for board_card in set(self.board.get_cards()):
+                    actions.append(Game.Action(card.clone(), board_card.clone()))
             else:
-                actions.append(Game.Action(card))
+                actions.append(Game.Action(card.clone()))
         return actions
+
+    def get_random_action(self) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+        &#34;&#34;&#34;Gets a random `ASMACAG.Game.Action.Action` that is currently valid.&#34;&#34;&#34;
+        hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
+
+        hand_card = random.choice(hand.get_cards())
+        if hand_card.get_type() == Game.CardType.NUMBER:
+            return Game.Action(hand_card.clone(), random.choice(self.board.get_cards()).clone())
+        else:
+            return Game.Action(hand_card.clone())
 # endregion
 
 # region Overrides
@@ -298,13 +341,51 @@ non-observable parts have been randomized.</p></div>
     actions = []
     hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
     
-    for card in hand.get_cards():
+    for card in set(hand.get_cards()):
         if card.get_type() == Game.CardType.NUMBER:
-            for board_card in self.board.get_cards():
-                actions.append(Game.Action(card, board_card))
+            for board_card in set(self.board.get_cards()):
+                actions.append(Game.Action(card.clone(), board_card.clone()))
         else:
-            actions.append(Game.Action(card))
+            actions.append(Game.Action(card.clone()))
     return actions</code></pre>
+</details>
+</dd>
+<dt id="ASMACAG.Game.Observation.Observation.get_random_action"><code class="name flex">
+<span>def <span class="ident">get_random_action</span></span>(<span>self) ‑> <a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets a random <code><a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></code> that is currently valid.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_random_action(self) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+    &#34;&#34;&#34;Gets a random `ASMACAG.Game.Action.Action` that is currently valid.&#34;&#34;&#34;
+    hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
+
+    hand_card = random.choice(hand.get_cards())
+    if hand_card.get_type() == Game.CardType.NUMBER:
+        return Game.Action(hand_card.clone(), random.choice(self.board.get_cards()).clone())
+    else:
+        return Game.Action(hand_card.clone())</code></pre>
+</details>
+</dd>
+<dt id="ASMACAG.Game.Observation.Observation.is_action_valid"><code class="name flex">
+<span>def <span class="ident">is_action_valid</span></span>(<span>self, action: <a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a>) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Checks if the given <code><a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></code> is currently valid.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_action_valid(self, action: &#34;ASMACAG.Game.Action.Action&#34;) -&gt; bool:
+    &#34;&#34;&#34;Checks if the given `ASMACAG.Game.Action.Action` is currently valid.&#34;&#34;&#34;
+    hand = self.player_0_hand if self.current_turn == 0 else self.player_1_hand
+    if action.get_played_card().get_type() == Game.CardType.NUMBER:
+        return action.get_played_card() in hand.get_cards() and action.get_board_card() in self.board.get_cards()
+    else:
+        return action.get_played_card() in hand.get_cards()</code></pre>
 </details>
 </dd>
 <dt id="ASMACAG.Game.Observation.Observation.randomise"><code class="name flex">
@@ -351,10 +432,12 @@ non-observable parts have been randomized.</p></div>
 <ul>
 <li>
 <h4><code><a title="ASMACAG.Game.Observation.Observation" href="#ASMACAG.Game.Observation.Observation">Observation</a></code></h4>
-<ul class="">
+<ul class="two-column">
 <li><code><a title="ASMACAG.Game.Observation.Observation.clone" href="#ASMACAG.Game.Observation.Observation.clone">clone</a></code></li>
 <li><code><a title="ASMACAG.Game.Observation.Observation.copy_into" href="#ASMACAG.Game.Observation.Observation.copy_into">copy_into</a></code></li>
 <li><code><a title="ASMACAG.Game.Observation.Observation.get_actions" href="#ASMACAG.Game.Observation.Observation.get_actions">get_actions</a></code></li>
+<li><code><a title="ASMACAG.Game.Observation.Observation.get_random_action" href="#ASMACAG.Game.Observation.Observation.get_random_action">get_random_action</a></code></li>
+<li><code><a title="ASMACAG.Game.Observation.Observation.is_action_valid" href="#ASMACAG.Game.Observation.Observation.is_action_valid">is_action_valid</a></code></li>
 <li><code><a title="ASMACAG.Game.Observation.Observation.randomise" href="#ASMACAG.Game.Observation.Observation.randomise">randomise</a></code></li>
 </ul>
 </li>

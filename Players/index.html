@@ -31,21 +31,46 @@
 </summary>
 <pre><code class="python">&#34;&#34;&#34;Module containing different `ASMACAG.Players.Player.Player` to evaluate a `ASMACAG.Game.GameState.GameState` or an
 `ASMACAG.Game.Observation.Observation`.&#34;&#34;&#34;
-# import all the separate files to make the Players folder act as a single module
 from Players.Player import Player
-from Players.RandomPlayer import RandomPlayer</code></pre>
+from Players.RandomPlayer import RandomPlayer
+from Players.OSLAPlayer import OSLAPlayer
+from Players.HumanPlayer import HumanPlayer
+from Players.MCTS import MCTSPlayer
+from Players.OE import OEPlayer
+from Players.NTBEA import NTBEAPlayer</code></pre>
 </details>
 </section>
 <section>
 <h2 class="section-title" id="header-submodules">Sub-modules</h2>
 <dl>
+<dt><code class="name"><a title="ASMACAG.Players.HumanPlayer" href="HumanPlayer.html">ASMACAG.Players.HumanPlayer</a></code></dt>
+<dd>
+<div class="desc"><p>Entity that lets a human player play an <code><a title="ASMACAG.Game.Game.Game" href="../Game/Game.html#ASMACAG.Game.Game.Game">Game</a></code> by using console inputs.</p></div>
+</dd>
+<dt><code class="name"><a title="ASMACAG.Players.MCTS" href="MCTS/index.html">ASMACAG.Players.MCTS</a></code></dt>
+<dd>
+<div class="desc"><p>Module containing the <code><a title="ASMACAG.Players.MCTS.MCTSPlayer.MCTSPlayer" href="MCTS/MCTSPlayer.html#ASMACAG.Players.MCTS.MCTSPlayer.MCTSPlayer">MCTSPlayer</a></code> and the auxiliary classes needed fot it.</p></div>
+</dd>
+<dt><code class="name"><a title="ASMACAG.Players.NTBEA" href="NTBEA/index.html">ASMACAG.Players.NTBEA</a></code></dt>
+<dd>
+<div class="desc"><p>Module containing the <code><a title="ASMACAG.Players.NTBEA.NTBEAPlayer.NTBEAPlayer" href="NTBEA/NTBEAPlayer.html#ASMACAG.Players.NTBEA.NTBEAPlayer.NTBEAPlayer">NTBEAPlayer</a></code> and the auxiliary classes needed fot it.</p></div>
+</dd>
+<dt><code class="name"><a title="ASMACAG.Players.OE" href="OE/index.html">ASMACAG.Players.OE</a></code></dt>
+<dd>
+<div class="desc"><p>Module containing the <code><a title="ASMACAG.Players.OE.OEPlayer.OEPlayer" href="OE/OEPlayer.html#ASMACAG.Players.OE.OEPlayer.OEPlayer">OEPlayer</a></code> and the auxiliary classes needed fot it.</p></div>
+</dd>
+<dt><code class="name"><a title="ASMACAG.Players.OSLAPlayer" href="OSLAPlayer.html">ASMACAG.Players.OSLAPlayer</a></code></dt>
+<dd>
+<div class="desc"><p>Entity that plays a <code><a title="ASMACAG.Game.Game.Game" href="../Game/Game.html#ASMACAG.Game.Game.Game">Game</a></code> by selecting the best <code><a title="ASMACAG.Game.Action.Action" href="../Game/Action.html#ASMACAG.Game.Action.Action">Action</a></code> found with a greedy
+one step lookahead search based on …</p></div>
+</dd>
 <dt><code class="name"><a title="ASMACAG.Players.Player" href="Player.html">ASMACAG.Players.Player</a></code></dt>
 <dd>
 <div class="desc"><p>Abstract base class for an entity with a defined behaviour for playing a <code><a title="ASMACAG.Game.Game.Game" href="../Game/Game.html#ASMACAG.Game.Game.Game">Game</a></code>.</p></div>
 </dd>
 <dt><code class="name"><a title="ASMACAG.Players.RandomPlayer" href="RandomPlayer.html">ASMACAG.Players.RandomPlayer</a></code></dt>
 <dd>
-<div class="desc"><p>Entity that plays a <code><a title="ASMACAG.Game.Game.Game" href="../Game/Game.html#ASMACAG.Game.Game.Game">Game</a></code> by selecting random valid actions.</p></div>
+<div class="desc"><p>Entity that plays a <code><a title="ASMACAG.Game.Game.Game" href="../Game/Game.html#ASMACAG.Game.Game.Game">Game</a></code> by selecting random valid <code><a title="ASMACAG.Game.Action.Action" href="../Game/Action.html#ASMACAG.Game.Action.Action">Action</a></code>.</p></div>
 </dd>
 </dl>
 </section>
@@ -69,6 +94,11 @@ from Players.RandomPlayer import RandomPlayer</code></pre>
 </li>
 <li><h3><a href="#header-submodules">Sub-modules</a></h3>
 <ul>
+<li><code><a title="ASMACAG.Players.HumanPlayer" href="HumanPlayer.html">ASMACAG.Players.HumanPlayer</a></code></li>
+<li><code><a title="ASMACAG.Players.MCTS" href="MCTS/index.html">ASMACAG.Players.MCTS</a></code></li>
+<li><code><a title="ASMACAG.Players.NTBEA" href="NTBEA/index.html">ASMACAG.Players.NTBEA</a></code></li>
+<li><code><a title="ASMACAG.Players.OE" href="OE/index.html">ASMACAG.Players.OE</a></code></li>
+<li><code><a title="ASMACAG.Players.OSLAPlayer" href="OSLAPlayer.html">ASMACAG.Players.OSLAPlayer</a></code></li>
 <li><code><a title="ASMACAG.Players.Player" href="Player.html">ASMACAG.Players.Player</a></code></li>
 <li><code><a title="ASMACAG.Players.RandomPlayer" href="RandomPlayer.html">ASMACAG.Players.RandomPlayer</a></code></li>
 </ul>

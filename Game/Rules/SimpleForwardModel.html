@@ -48,10 +48,16 @@ class SimpleForwardModel(ForwardModel):
         else:
             hand = game_state.player_1_hand
 
-        if action.get_played_card() not in hand:
+        if action is None:
+            # invalid action: no action returned
+            game_state.discard_deck.add_card(hand.get_cards()[0])
+            hand.remove(hand.get_cards()[0])
+            self.give_min_score(game_state)
+            return False
+        elif action.get_played_card() not in hand:
             # invalid action: selected card is not in hand, give min score and remove first card in hand
-            game_state.discard_deck.add_card(hand[0])
-            hand.remove(hand[0])
+            game_state.discard_deck.add_card(hand.get_cards()[0])
+            hand.remove(hand.get_cards()[0])
             self.give_min_score(game_state)
             return False
         else:
@@ -93,9 +99,7 @@ class SimpleForwardModel(ForwardModel):
                                         &#34;ASMACAG.Game.Observation.Observation]&#34;) -&gt; None:
         &#34;&#34;&#34;Moves the `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` when the
         `ASMACAG.Players.Player.Player` turn is finished.&#34;&#34;&#34;
-        if game_state.action_points_left &lt;= 0\
-                or (game_state.current_turn == 0 and game_state.player_0_hand.get_empty())\
-                or (game_state.current_turn == 1 and game_state.player_1_hand.get_empty()):
+        if self.is_turn_finished(game_state):
             game_state.current_turn = (game_state.current_turn + 1) % 2
             game_state.action_points_left = game_state.game_parameters.amount_action_points
 
@@ -105,6 +109,14 @@ class SimpleForwardModel(ForwardModel):
         condition and returns whether it has finished.&#34;&#34;&#34;
         return game_state.player_0_hand.get_empty() and game_state.player_1_hand.get_empty() \
             or game_state.board.get_empty()
+
+    def is_turn_finished(self, game_state: &#34;Union[ASMACAG.Game.GameState.GameState,&#34;
+                                           &#34;ASMACAG.Game.Observation.Observation]&#34;) -&gt; bool:
+        &#34;&#34;&#34;Tests a `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` against the end turn
+        condition and returns whether the turn has finished.&#34;&#34;&#34;
+        return game_state.action_points_left &lt;= 0 \
+            or (game_state.current_turn == 0 and game_state.player_0_hand.get_empty()) \
+            or (game_state.current_turn == 1 and game_state.player_1_hand.get_empty())
 
     def give_min_score(self, game_state: &#34;Union[ASMACAG.Game.GameState.GameState,&#34;
                                          &#34;ASMACAG.Game.Observation.Observation]&#34;) -&gt; None:
@@ -158,10 +170,16 @@ class SimpleForwardModel(ForwardModel):
         else:
             hand = game_state.player_1_hand
 
-        if action.get_played_card() not in hand:
+        if action is None:
+            # invalid action: no action returned
+            game_state.discard_deck.add_card(hand.get_cards()[0])
+            hand.remove(hand.get_cards()[0])
+            self.give_min_score(game_state)
+            return False
+        elif action.get_played_card() not in hand:
             # invalid action: selected card is not in hand, give min score and remove first card in hand
-            game_state.discard_deck.add_card(hand[0])
-            hand.remove(hand[0])
+            game_state.discard_deck.add_card(hand.get_cards()[0])
+            hand.remove(hand.get_cards()[0])
             self.give_min_score(game_state)
             return False
         else:
@@ -203,9 +221,7 @@ class SimpleForwardModel(ForwardModel):
                                         &#34;ASMACAG.Game.Observation.Observation]&#34;) -&gt; None:
         &#34;&#34;&#34;Moves the `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` when the
         `ASMACAG.Players.Player.Player` turn is finished.&#34;&#34;&#34;
-        if game_state.action_points_left &lt;= 0\
-                or (game_state.current_turn == 0 and game_state.player_0_hand.get_empty())\
-                or (game_state.current_turn == 1 and game_state.player_1_hand.get_empty()):
+        if self.is_turn_finished(game_state):
             game_state.current_turn = (game_state.current_turn + 1) % 2
             game_state.action_points_left = game_state.game_parameters.amount_action_points
 
@@ -215,6 +231,14 @@ class SimpleForwardModel(ForwardModel):
         condition and returns whether it has finished.&#34;&#34;&#34;
         return game_state.player_0_hand.get_empty() and game_state.player_1_hand.get_empty() \
             or game_state.board.get_empty()
+
+    def is_turn_finished(self, game_state: &#34;Union[ASMACAG.Game.GameState.GameState,&#34;
+                                           &#34;ASMACAG.Game.Observation.Observation]&#34;) -&gt; bool:
+        &#34;&#34;&#34;Tests a `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` against the end turn
+        condition and returns whether the turn has finished.&#34;&#34;&#34;
+        return game_state.action_points_left &lt;= 0 \
+            or (game_state.current_turn == 0 and game_state.player_0_hand.get_empty()) \
+            or (game_state.current_turn == 1 and game_state.player_1_hand.get_empty())
 
     def give_min_score(self, game_state: &#34;Union[ASMACAG.Game.GameState.GameState,&#34;
                                          &#34;ASMACAG.Game.Observation.Observation]&#34;) -&gt; None:
@@ -281,6 +305,25 @@ condition and returns whether it has finished.</p></div>
         or game_state.board.get_empty()</code></pre>
 </details>
 </dd>
+<dt id="ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.is_turn_finished"><code class="name flex">
+<span>def <span class="ident">is_turn_finished</span></span>(<span>self, game_state: Union[<a title="ASMACAG.Game.GameState.GameState" href="../GameState.html#ASMACAG.Game.GameState.GameState">GameState</a>,<a title="ASMACAG.Game.Observation.Observation" href="../Observation.html#ASMACAG.Game.Observation.Observation">Observation</a>]) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tests a <code><a title="ASMACAG.Game.GameState.GameState" href="../GameState.html#ASMACAG.Game.GameState.GameState">GameState</a></code> or <code><a title="ASMACAG.Game.Observation.Observation" href="../Observation.html#ASMACAG.Game.Observation.Observation">Observation</a></code> against the end turn
+condition and returns whether the turn has finished.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_turn_finished(self, game_state: &#34;Union[ASMACAG.Game.GameState.GameState,&#34;
+                                       &#34;ASMACAG.Game.Observation.Observation]&#34;) -&gt; bool:
+    &#34;&#34;&#34;Tests a `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` against the end turn
+    condition and returns whether the turn has finished.&#34;&#34;&#34;
+    return game_state.action_points_left &lt;= 0 \
+        or (game_state.current_turn == 0 and game_state.player_0_hand.get_empty()) \
+        or (game_state.current_turn == 1 and game_state.player_1_hand.get_empty())</code></pre>
+</details>
+</dd>
 <dt id="ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.on_turn_ended"><code class="name flex">
 <span>def <span class="ident">on_turn_ended</span></span>(<span>self, game_state: Union[<a title="ASMACAG.Game.GameState.GameState" href="../GameState.html#ASMACAG.Game.GameState.GameState">GameState</a>,<a title="ASMACAG.Game.Observation.Observation" href="../Observation.html#ASMACAG.Game.Observation.Observation">Observation</a>])</span>
 </code></dt>
@@ -295,9 +338,7 @@ condition and returns whether it has finished.</p></div>
                                     &#34;ASMACAG.Game.Observation.Observation]&#34;) -&gt; None:
     &#34;&#34;&#34;Moves the `ASMACAG.Game.GameState.GameState` or `ASMACAG.Game.Observation.Observation` when the
     `ASMACAG.Players.Player.Player` turn is finished.&#34;&#34;&#34;
-    if game_state.action_points_left &lt;= 0\
-            or (game_state.current_turn == 0 and game_state.player_0_hand.get_empty())\
-            or (game_state.current_turn == 1 and game_state.player_1_hand.get_empty()):
+    if self.is_turn_finished(game_state):
         game_state.current_turn = (game_state.current_turn + 1) % 2
         game_state.action_points_left = game_state.game_parameters.amount_action_points</code></pre>
 </details>
@@ -323,10 +364,16 @@ the <code><a title="ASMACAG.Game.Action.Action" href="../Action.html#ASMACAG.Gam
     else:
         hand = game_state.player_1_hand
 
-    if action.get_played_card() not in hand:
+    if action is None:
+        # invalid action: no action returned
+        game_state.discard_deck.add_card(hand.get_cards()[0])
+        hand.remove(hand.get_cards()[0])
+        self.give_min_score(game_state)
+        return False
+    elif action.get_played_card() not in hand:
         # invalid action: selected card is not in hand, give min score and remove first card in hand
-        game_state.discard_deck.add_card(hand[0])
-        hand.remove(hand[0])
+        game_state.discard_deck.add_card(hand.get_cards()[0])
+        hand.remove(hand.get_cards()[0])
         self.give_min_score(game_state)
         return False
     else:
@@ -388,6 +435,7 @@ the <code><a title="ASMACAG.Game.Action.Action" href="../Action.html#ASMACAG.Gam
 <ul class="">
 <li><code><a title="ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.give_min_score" href="#ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.give_min_score">give_min_score</a></code></li>
 <li><code><a title="ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.is_terminal" href="#ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.is_terminal">is_terminal</a></code></li>
+<li><code><a title="ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.is_turn_finished" href="#ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.is_turn_finished">is_turn_finished</a></code></li>
 <li><code><a title="ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.on_turn_ended" href="#ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.on_turn_ended">on_turn_ended</a></code></li>
 <li><code><a title="ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.step" href="#ASMACAG.Game.Rules.SimpleForwardModel.SimpleForwardModel.step">step</a></code></li>
 </ul>

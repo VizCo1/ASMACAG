@@ -69,7 +69,11 @@ class Card:
         return f&#34;{self.card_type!s}{f&#39; {self.number}&#39; if self.card_type == Game.CardType.NUMBER else &#39;&#39;!s}&#34;
 
     def __eq__(self, other):
-        return self.card_type == other.card_type and self.number == other.number
+        return isinstance(other, Card) and other.card_type == other.card_type and self.number == other.number
+
+    def __hash__(self):
+        # note that this may not generate a unique hash for parameter sets that are not the default ones
+        return self.number + 1 if self.card_type == Game.CardType.NUMBER else self.card_type.value - 2
 # endregion</code></pre>
 </details>
 </section>
@@ -128,7 +132,11 @@ class Card:
         return f&#34;{self.card_type!s}{f&#39; {self.number}&#39; if self.card_type == Game.CardType.NUMBER else &#39;&#39;!s}&#34;
 
     def __eq__(self, other):
-        return self.card_type == other.card_type and self.number == other.number</code></pre>
+        return isinstance(other, Card) and other.card_type == other.card_type and self.number == other.number
+
+    def __hash__(self):
+        # note that this may not generate a unique hash for parameter sets that are not the default ones
+        return self.number + 1 if self.card_type == Game.CardType.NUMBER else self.card_type.value - 2</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>

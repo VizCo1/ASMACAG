@@ -39,16 +39,17 @@ class GameParameters:
     are always shallow copied. Do not modify them after instatiating.&#34;&#34;&#34;
     def __init__(self,
                  amount_cards_on_hand=9,
-                 amount_cards_on_board=18,
+                 amount_cards_on_board=20,
                  amount_action_points=3,
                  min_number=1,
                  max_number=6,
-                 amount_cards_limit_number=6,
+                 amount_cards_limit_number=5,
                  amount_cards_normal_number=8,
                  amount_cards_mult2=6,
                  amount_cards_div2=6,
                  seed=None,
-                 forward_model: Rules.ForwardModel = Rules.SimpleForwardModel()):
+                 randomise_hidden_info=True,
+                 forward_model: &#34;ASMACAG.Game.Rules.ForwardModel.ForwardModel&#34; = Rules.SimpleForwardModel()):
         self.amount_cards_on_hand = amount_cards_on_hand
         self.amount_cards_on_board = amount_cards_on_board
         self.amount_action_points = amount_action_points
@@ -59,6 +60,7 @@ class GameParameters:
         self.amount_cards_mult2 = amount_cards_mult2
         self.amount_cards_div2 = amount_cards_div2
         self.seed = seed
+        self.randomise_hidden_info = randomise_hidden_info
         self.forward_model = forward_model
 
     def __str__(self):
@@ -79,7 +81,7 @@ class GameParameters:
 <dl>
 <dt id="ASMACAG.Game.GameParameters.GameParameters"><code class="flex name class">
 <span>class <span class="ident">GameParameters</span></span>
-<span>(</span><span>amount_cards_on_hand=9, amount_cards_on_board=18, amount_action_points=3, min_number=1, max_number=6, amount_cards_limit_number=6, amount_cards_normal_number=8, amount_cards_mult2=6, amount_cards_div2=6, seed=None, forward_model: Game.Rules.ForwardModel.ForwardModel = &lt;Game.Rules.SimpleForwardModel.SimpleForwardModel object&gt;)</span>
+<span>(</span><span>amount_cards_on_hand=9, amount_cards_on_board=20, amount_action_points=3, min_number=1, max_number=6, amount_cards_limit_number=5, amount_cards_normal_number=8, amount_cards_mult2=6, amount_cards_div2=6, seed=None, randomise_hidden_info=True, forward_model: <a title="ASMACAG.Game.Rules.ForwardModel.ForwardModel" href="Rules/ForwardModel.html#ASMACAG.Game.Rules.ForwardModel.ForwardModel">ForwardModel</a> = &lt;Game.Rules.SimpleForwardModel.SimpleForwardModel object&gt;)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Contains the parameters for a <code><a title="ASMACAG.Game.Game.Game" href="Game.html#ASMACAG.Game.Game.Game">Game</a></code>. Note that these are assumed to be static and therefore
@@ -93,16 +95,17 @@ are always shallow copied. Do not modify them after instatiating.</p></div>
     are always shallow copied. Do not modify them after instatiating.&#34;&#34;&#34;
     def __init__(self,
                  amount_cards_on_hand=9,
-                 amount_cards_on_board=18,
+                 amount_cards_on_board=20,
                  amount_action_points=3,
                  min_number=1,
                  max_number=6,
-                 amount_cards_limit_number=6,
+                 amount_cards_limit_number=5,
                  amount_cards_normal_number=8,
                  amount_cards_mult2=6,
                  amount_cards_div2=6,
                  seed=None,
-                 forward_model: Rules.ForwardModel = Rules.SimpleForwardModel()):
+                 randomise_hidden_info=True,
+                 forward_model: &#34;ASMACAG.Game.Rules.ForwardModel.ForwardModel&#34; = Rules.SimpleForwardModel()):
         self.amount_cards_on_hand = amount_cards_on_hand
         self.amount_cards_on_board = amount_cards_on_board
         self.amount_action_points = amount_action_points
@@ -113,6 +116,7 @@ are always shallow copied. Do not modify them after instatiating.</p></div>
         self.amount_cards_mult2 = amount_cards_mult2
         self.amount_cards_div2 = amount_cards_div2
         self.seed = seed
+        self.randomise_hidden_info = randomise_hidden_info
         self.forward_model = forward_model
 
     def __str__(self):

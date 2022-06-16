@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>ASMACAG.Players.RandomPlayer API documentation</title>
-<meta name="description" content="Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid actions." />
+<meta name="description" content="Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid `ASMACAG.Game.Action.Action`." />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -22,26 +22,25 @@
 <h1 class="title">Module <code>ASMACAG.Players.RandomPlayer</code></h1>
 </header>
 <section id="section-intro">
-<p>Entity that plays a <code><a title="ASMACAG.Game.Game.Game" href="../Game/Game.html#ASMACAG.Game.Game.Game">Game</a></code> by selecting random valid actions.</p>
+<p>Entity that plays a <code><a title="ASMACAG.Game.Game.Game" href="../Game/Game.html#ASMACAG.Game.Game.Game">Game</a></code> by selecting random valid <code><a title="ASMACAG.Game.Action.Action" href="../Game/Action.html#ASMACAG.Game.Action.Action">Action</a></code>.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid actions.&#34;&#34;&#34;
-import random
+<pre><code class="python">&#34;&#34;&#34;Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid `ASMACAG.Game.Action.Action`.&#34;&#34;&#34;
 from Players import Player
 
 
 class RandomPlayer(Player):
-    &#34;&#34;&#34;Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid actions.&#34;&#34;&#34;
+    &#34;&#34;&#34;Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid `ASMACAG.Game.Action.Action`.&#34;&#34;&#34;
     def __init__(self):
         super().__init__()
 
 # region Methods
-    def think(self, observation: &#34;ASMACAG.Game.Observation.Observation&#34;, budget: int) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+    def think(self, observation: &#34;ASMACAG.Game.Observation.Observation&#34;, budget: float) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
         &#34;&#34;&#34;Returns a randomly selected valid `ASMACAG.Game.Action.Action` to play given an
         `ASMACAG.Game.Observation.Observation`.&#34;&#34;&#34;
-        return random.choice(observation.get_actions())
+        return observation.get_random_action()
 # endregion
 
 # region Overrides
@@ -63,21 +62,21 @@ class RandomPlayer(Player):
 <span>class <span class="ident">RandomPlayer</span></span>
 </code></dt>
 <dd>
-<div class="desc"><p>Entity that plays a <code><a title="ASMACAG.Game.Game.Game" href="../Game/Game.html#ASMACAG.Game.Game.Game">Game</a></code> by selecting random valid actions.</p></div>
+<div class="desc"><p>Entity that plays a <code><a title="ASMACAG.Game.Game.Game" href="../Game/Game.html#ASMACAG.Game.Game.Game">Game</a></code> by selecting random valid <code><a title="ASMACAG.Game.Action.Action" href="../Game/Action.html#ASMACAG.Game.Action.Action">Action</a></code>.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class RandomPlayer(Player):
-    &#34;&#34;&#34;Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid actions.&#34;&#34;&#34;
+    &#34;&#34;&#34;Entity that plays a `ASMACAG.Game.Game.Game` by selecting random valid `ASMACAG.Game.Action.Action`.&#34;&#34;&#34;
     def __init__(self):
         super().__init__()
 
 # region Methods
-    def think(self, observation: &#34;ASMACAG.Game.Observation.Observation&#34;, budget: int) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+    def think(self, observation: &#34;ASMACAG.Game.Observation.Observation&#34;, budget: float) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
         &#34;&#34;&#34;Returns a randomly selected valid `ASMACAG.Game.Action.Action` to play given an
         `ASMACAG.Game.Observation.Observation`.&#34;&#34;&#34;
-        return random.choice(observation.get_actions())
+        return observation.get_random_action()
 # endregion
 
 # region Overrides
@@ -92,7 +91,7 @@ class RandomPlayer(Player):
 <h3>Methods</h3>
 <dl>
 <dt id="ASMACAG.Players.RandomPlayer.RandomPlayer.think"><code class="name flex">
-<span>def <span class="ident">think</span></span>(<span>self, observation: <a title="ASMACAG.Game.Observation.Observation" href="../Game/Observation.html#ASMACAG.Game.Observation.Observation">Observation</a>, budget: int) ‑> <a title="ASMACAG.Game.Action.Action" href="../Game/Action.html#ASMACAG.Game.Action.Action">Action</a></span>
+<span>def <span class="ident">think</span></span>(<span>self, observation: <a title="ASMACAG.Game.Observation.Observation" href="../Game/Observation.html#ASMACAG.Game.Observation.Observation">Observation</a>, budget: float) ‑> <a title="ASMACAG.Game.Action.Action" href="../Game/Action.html#ASMACAG.Game.Action.Action">Action</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns a randomly selected valid <code><a title="ASMACAG.Game.Action.Action" href="../Game/Action.html#ASMACAG.Game.Action.Action">Action</a></code> to play given an
@@ -101,10 +100,10 @@ class RandomPlayer(Player):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def think(self, observation: &#34;ASMACAG.Game.Observation.Observation&#34;, budget: int) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+<pre><code class="python">def think(self, observation: &#34;ASMACAG.Game.Observation.Observation&#34;, budget: float) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
     &#34;&#34;&#34;Returns a randomly selected valid `ASMACAG.Game.Action.Action` to play given an
     `ASMACAG.Game.Observation.Observation`.&#34;&#34;&#34;
-    return random.choice(observation.get_actions())</code></pre>
+    return observation.get_random_action()</code></pre>
 </details>
 </dd>
 </dl>

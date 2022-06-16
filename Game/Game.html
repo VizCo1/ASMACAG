@@ -51,7 +51,7 @@ class Game:
         &#34;&#34;&#34;Resets the `ASMACAG.Game.GameState.GameState` so that is ready for a new `Game`.&#34;&#34;&#34;
         self.game_state.reset()
 
-    def run(self, player_0: &#34;ASMACAG.Players.Player.Player&#34;, player_1: &#34;ASMACAG.Players.Player.Player&#34;, budget: int,
+    def run(self, player_0: &#34;ASMACAG.Players.Player.Player&#34;, player_1: &#34;ASMACAG.Players.Player.Player&#34;, budget: float,
             verbose: bool, enforce_time: bool) -&gt; None:
         &#34;&#34;&#34;Runs an ASMACAG `Game`.&#34;&#34;&#34;
         save_str = &#34;&#34;
@@ -94,7 +94,7 @@ class Game:
             self.save_file.write(save_str)
             self.save_file.close()
 
-    def play_turn(self, player: &#34;ASMACAG.Players.Player.Player&#34;, budget: int, verbose: bool,
+    def play_turn(self, player: &#34;ASMACAG.Players.Player.Player&#34;, budget: float, verbose: bool,
                   enforce_time: bool) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
         &#34;&#34;&#34;Performs a `ASMACAG.Players.Player.Player` turn.&#34;&#34;&#34;
         if verbose:
@@ -104,7 +104,7 @@ class Game:
             print(&#34;---------------------------------------- &#34;)
             print(f&#34;{self.game_state}\n&#34;)
 
-        while self.game_state.action_points_left &gt; 0:
+        while not self.game_state.game_parameters.forward_model.is_turn_finished(self.game_state):
             # Observable part of the GameState
             observation = self.game_state.get_observation()
 
@@ -135,7 +135,7 @@ class Game:
             return action
 
     def think(self, player: &#34;ASMACAG.Players.Player.Player&#34;, observation: &#34;ASMACAG.Game.Observation.Observation&#34;,
-              budget: int) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+              budget: float) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
         &#34;&#34;&#34;Requires the `ASMACAG.Players.Player.Player` to decide, given an `ASMACAG.Game.Observation.Observation`,
         what `ASMACAG.Game.Action.Action` to play and returns it.&#34;&#34;&#34;
         return player.think(observation, budget)
@@ -196,7 +196,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
         &#34;&#34;&#34;Resets the `ASMACAG.Game.GameState.GameState` so that is ready for a new `Game`.&#34;&#34;&#34;
         self.game_state.reset()
 
-    def run(self, player_0: &#34;ASMACAG.Players.Player.Player&#34;, player_1: &#34;ASMACAG.Players.Player.Player&#34;, budget: int,
+    def run(self, player_0: &#34;ASMACAG.Players.Player.Player&#34;, player_1: &#34;ASMACAG.Players.Player.Player&#34;, budget: float,
             verbose: bool, enforce_time: bool) -&gt; None:
         &#34;&#34;&#34;Runs an ASMACAG `Game`.&#34;&#34;&#34;
         save_str = &#34;&#34;
@@ -239,7 +239,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
             self.save_file.write(save_str)
             self.save_file.close()
 
-    def play_turn(self, player: &#34;ASMACAG.Players.Player.Player&#34;, budget: int, verbose: bool,
+    def play_turn(self, player: &#34;ASMACAG.Players.Player.Player&#34;, budget: float, verbose: bool,
                   enforce_time: bool) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
         &#34;&#34;&#34;Performs a `ASMACAG.Players.Player.Player` turn.&#34;&#34;&#34;
         if verbose:
@@ -249,7 +249,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
             print(&#34;---------------------------------------- &#34;)
             print(f&#34;{self.game_state}\n&#34;)
 
-        while self.game_state.action_points_left &gt; 0:
+        while not self.game_state.game_parameters.forward_model.is_turn_finished(self.game_state):
             # Observable part of the GameState
             observation = self.game_state.get_observation()
 
@@ -280,7 +280,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
             return action
 
     def think(self, player: &#34;ASMACAG.Players.Player.Player&#34;, observation: &#34;ASMACAG.Game.Observation.Observation&#34;,
-              budget: int) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+              budget: float) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
         &#34;&#34;&#34;Requires the `ASMACAG.Players.Player.Player` to decide, given an `ASMACAG.Game.Observation.Observation`,
         what `ASMACAG.Game.Action.Action` to play and returns it.&#34;&#34;&#34;
         return player.think(observation, budget)
@@ -328,7 +328,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
 </details>
 </dd>
 <dt id="ASMACAG.Game.Game.Game.play_turn"><code class="name flex">
-<span>def <span class="ident">play_turn</span></span>(<span>self, player: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, budget: int, verbose: bool, enforce_time: bool) ‑> <a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></span>
+<span>def <span class="ident">play_turn</span></span>(<span>self, player: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, budget: float, verbose: bool, enforce_time: bool) ‑> <a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Performs a <code><a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a></code> turn.</p></div>
@@ -336,7 +336,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def play_turn(self, player: &#34;ASMACAG.Players.Player.Player&#34;, budget: int, verbose: bool,
+<pre><code class="python">def play_turn(self, player: &#34;ASMACAG.Players.Player.Player&#34;, budget: float, verbose: bool,
               enforce_time: bool) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
     &#34;&#34;&#34;Performs a `ASMACAG.Players.Player.Player` turn.&#34;&#34;&#34;
     if verbose:
@@ -346,7 +346,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
         print(&#34;---------------------------------------- &#34;)
         print(f&#34;{self.game_state}\n&#34;)
 
-    while self.game_state.action_points_left &gt; 0:
+    while not self.game_state.game_parameters.forward_model.is_turn_finished(self.game_state):
         # Observable part of the GameState
         observation = self.game_state.get_observation()
 
@@ -409,7 +409,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
 </details>
 </dd>
 <dt id="ASMACAG.Game.Game.Game.run"><code class="name flex">
-<span>def <span class="ident">run</span></span>(<span>self, player_0: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, player_1: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, budget: int, verbose: bool, enforce_time: bool)</span>
+<span>def <span class="ident">run</span></span>(<span>self, player_0: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, player_1: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, budget: float, verbose: bool, enforce_time: bool)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Runs an ASMACAG <code><a title="ASMACAG.Game.Game.Game" href="#ASMACAG.Game.Game.Game">Game</a></code>.</p></div>
@@ -417,7 +417,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def run(self, player_0: &#34;ASMACAG.Players.Player.Player&#34;, player_1: &#34;ASMACAG.Players.Player.Player&#34;, budget: int,
+<pre><code class="python">def run(self, player_0: &#34;ASMACAG.Players.Player.Player&#34;, player_1: &#34;ASMACAG.Players.Player.Player&#34;, budget: float,
         verbose: bool, enforce_time: bool) -&gt; None:
     &#34;&#34;&#34;Runs an ASMACAG `Game`.&#34;&#34;&#34;
     save_str = &#34;&#34;
@@ -476,7 +476,7 @@ according to the rules defined in the <code><a title="ASMACAG.Game.Rules.Forward
 </details>
 </dd>
 <dt id="ASMACAG.Game.Game.Game.think"><code class="name flex">
-<span>def <span class="ident">think</span></span>(<span>self, player: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, observation: <a title="ASMACAG.Game.Observation.Observation" href="Observation.html#ASMACAG.Game.Observation.Observation">Observation</a>, budget: int) ‑> <a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></span>
+<span>def <span class="ident">think</span></span>(<span>self, player: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, observation: <a title="ASMACAG.Game.Observation.Observation" href="Observation.html#ASMACAG.Game.Observation.Observation">Observation</a>, budget: float) ‑> <a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></span>
 </code></dt>
 <dd>
 <div class="desc"><p>Requires the <code><a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a></code> to decide, given an <code><a title="ASMACAG.Game.Observation.Observation" href="Observation.html#ASMACAG.Game.Observation.Observation">Observation</a></code>,
@@ -486,7 +486,7 @@ what <code><a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def think(self, player: &#34;ASMACAG.Players.Player.Player&#34;, observation: &#34;ASMACAG.Game.Observation.Observation&#34;,
-          budget: int) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+          budget: float) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
     &#34;&#34;&#34;Requires the `ASMACAG.Players.Player.Player` to decide, given an `ASMACAG.Game.Observation.Observation`,
     what `ASMACAG.Game.Action.Action` to play and returns it.&#34;&#34;&#34;
     return player.think(observation, budget)</code></pre>

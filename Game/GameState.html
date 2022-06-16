@@ -50,7 +50,7 @@ class GameState:
     def get_observation(self) -&gt; &#34;ASMACAG.Game.Observation.Observation&#34;:
         &#34;&#34;&#34;Gets a `ASMACAG.Game.Observation.Observation` representing this `GameState` with its non-observable parts
         randomised.&#34;&#34;&#34;
-        return Game.Observation(self)
+        return Game.Observation(self, self.game_parameters.randomise_hidden_info)
 
     def reset(self) -&gt; None:
         &#34;&#34;&#34;Resets and sets up the `GameState` so that is ready for a new `ASMACAG.Game.Game.Game`. Must be called by
@@ -154,7 +154,7 @@ class GameState:
     def get_observation(self) -&gt; &#34;ASMACAG.Game.Observation.Observation&#34;:
         &#34;&#34;&#34;Gets a `ASMACAG.Game.Observation.Observation` representing this `GameState` with its non-observable parts
         randomised.&#34;&#34;&#34;
-        return Game.Observation(self)
+        return Game.Observation(self, self.game_parameters.randomise_hidden_info)
 
     def reset(self) -&gt; None:
         &#34;&#34;&#34;Resets and sets up the `GameState` so that is ready for a new `ASMACAG.Game.Game.Game`. Must be called by
@@ -233,7 +233,7 @@ randomised.</p></div>
 <pre><code class="python">def get_observation(self) -&gt; &#34;ASMACAG.Game.Observation.Observation&#34;:
     &#34;&#34;&#34;Gets a `ASMACAG.Game.Observation.Observation` representing this `GameState` with its non-observable parts
     randomised.&#34;&#34;&#34;
-    return Game.Observation(self)</code></pre>
+    return Game.Observation(self, self.game_parameters.randomise_hidden_info)</code></pre>
 </details>
 </dd>
 <dt id="ASMACAG.Game.GameState.GameState.reset"><code class="name flex">
