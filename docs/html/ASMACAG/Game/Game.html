@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>ASMACAG.Game.Game API documentation</title>
+<meta name="description" content="Contains the logic for playing the ASMACAG game with certain `ASMACAG.Game.GameParameters.GameParameters`
+according to the rules defined in the …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ASMACAG.Game.Game</code></h1>
+</header>
+<section id="section-intro">
+<p>Contains the logic for playing the ASMACAG game with certain <code><a title="ASMACAG.Game.GameParameters.GameParameters" href="GameParameters.html#ASMACAG.Game.GameParameters.GameParameters">GameParameters</a></code>
+according to the rules defined in the <code><a title="ASMACAG.Game.Rules.ForwardModel.ForwardModel" href="Rules/ForwardModel.html#ASMACAG.Game.Rules.ForwardModel.ForwardModel">ForwardModel</a></code> they contain.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Contains the logic for playing the ASMACAG game with certain `ASMACAG.Game.GameParameters.GameParameters`
+according to the rules defined in the `ASMACAG.Game.Rules.ForwardModel.ForwardModel` they contain. &#34;&#34;&#34;
+import random
+import sys
+import func_timeout
+from typing import Optional
+import Game as GameModule
+
+
+class Game:
+    &#34;&#34;&#34;Contains the logic for playing the ASMACAG game with certain `ASMACAG.Game.GameParameters.GameParameters`
+    according to the rules defined in the `ASMACAG.Game.Rules.ForwardModel.ForwardModel` they contain. &#34;&#34;&#34;
+
+    def __init__(self, parameters: &#34;ASMACAG.Game.GameParameters.GameParameters&#34;):
+        self.save_file = None
+        self.game_state = GameModule.GameState(parameters)
+
+# region Methods
+    def reset(self) -&gt; None:
+        &#34;&#34;&#34;Resets the `ASMACAG.Game.GameState.GameState` so that is ready for a new `Game`.&#34;&#34;&#34;
+        self.game_state.reset()
+
+    def run(self, player_0: &#34;ASMACAG.Players.Player.Player&#34;, player_1: &#34;ASMACAG.Players.Player.Player&#34;, budget: float,
+            verbose: bool, enforce_time: bool) -&gt; None:
+        &#34;&#34;&#34;Runs an ASMACAG `Game`.&#34;&#34;&#34;
+        save_str = &#34;&#34;
+
+        if self.game_state.game_parameters.seed is None:
+            seed = random.randrange(sys.maxsize)
+        else:
+            seed = self.game_state.game_parameters.seed
+
+        random.seed(seed)
+        if self.save_file is not None:
+            save_str += f&#34;{seed}\n&#34;
+        if verbose:
+            print(&#34;&#34;)
+            print(&#34;*** ------------------------------------------------- &#34;)
+            print(f&#34;*** Game started with seed {seed}&#34;)
+            print(&#34;*** ------------------------------------------------- &#34;)
+
+        self.reset()
+
+        if self.save_file is not None:
+            save_str += f&#34;{self.game_state.game_parameters}\n&#34;
+            save_str += f&#34;{player_0!s} {player_1!s}\n&#34;
+            save_str += f&#34;{self.game_state.board!s}\n&#34;
+            save_str += f&#34;{self.game_state.player_0_hand!s}\n&#34;
+            save_str += f&#34;{self.game_state.player_1_hand!s}\n&#34;
+
+        players = [player_0, player_1]
+
+        # Run players&#39; turns while the game is not finished
+        while not self.game_state.game_parameters.forward_model.is_terminal(self.game_state):
+            action = self.play_turn(players[self.game_state.current_turn], budget, verbose, enforce_time)
+
+            if self.save_file is not None:
+                save_str += f&#34;{self.game_state.current_turn!s} {action!s}\n&#34;
+
+            self.game_state.game_parameters.forward_model.on_turn_ended(self.game_state)
+
+        if self.save_file is not None:
+            self.save_file.write(save_str)
+            self.save_file.close()
+
+    def play_turn(self, player: &#34;ASMACAG.Players.Player.Player&#34;, budget: float, verbose: bool,
+                  enforce_time: bool) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+        &#34;&#34;&#34;Performs a `ASMACAG.Players.Player.Player` turn.&#34;&#34;&#34;
+        if verbose:
+            print(&#34;&#34;)
+            print(&#34;---------------------------------------- &#34;)
+            print(f&#34;Player {self.game_state.current_turn} [{player!s}] turn&#34;)
+            print(&#34;---------------------------------------- &#34;)
+            print(f&#34;{self.game_state}\n&#34;)
+
+        while not self.game_state.game_parameters.forward_model.is_turn_finished(self.game_state):
+            # Observable part of the GameState
+            observation = self.game_state.get_observation()
+
+            # When enforce_time is True, the player has budget seconds to think.
+            # If they take more than that, a random action is played instead.
+            if enforce_time:
+                try:
+                    action = func_timeout.func_timeout(budget, self.think, args=[player, observation, budget])
+                except func_timeout.FunctionTimedOut:
+                    if verbose:
+                        print(&#34;Too much time thinking. A random action was selected!&#34;)
+                    action = self.random_action(observation)
+            else:
+                action = self.think(player, observation, budget)
+
+            if action is None:
+                if verbose:
+                    print(&#34;Player didn&#39;t return an action. A random action was selected!&#34;)
+                action = self.random_action(observation)
+
+            if verbose:
+                print(f&#34;Player {self.game_state.current_turn} selects {action!s}.&#34;)
+
+            self.game_state.game_parameters.forward_model.step(self.game_state, action)
+
+            if verbose:
+                print(f&#34;Score: [{self.game_state.player_0_score}] - [{self.game_state.player_1_score}]&#34;)
+            return action
+
+    def think(self, player: &#34;ASMACAG.Players.Player.Player&#34;, observation: &#34;ASMACAG.Game.Observation.Observation&#34;,
+              budget: float) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+        &#34;&#34;&#34;Requires the `ASMACAG.Players.Player.Player` to decide, given an `ASMACAG.Game.Observation.Observation`,
+        what `ASMACAG.Game.Action.Action` to play and returns it.&#34;&#34;&#34;
+        return player.think(observation, budget)
+
+    def random_action(self, observation: &#34;ASMACAG.Game.Observation.Observation&#34;) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+        &#34;&#34;&#34;Returns a random valid `ASMACAG.Game.Action.Action` for the state defined in the given
+        `ASMACAG.Game.Observation.Observation`.&#34;&#34;&#34;
+        actions = observation.get_actions()
+        return random.choice(actions)
+# endregion
+
+# region Getters and Setters
+    def set_save_file(self, filename: &#34;Optional[str]&#34;) -&gt; None:
+        &#34;&#34;&#34;Sets the file that the `Game` is saved to.&#34;&#34;&#34;
+        self.save_file = open(filename, &#34;w&#34;) if filename is not None else None
+
+    def get_winner(self) -&gt; int:
+        &#34;&#34;&#34;Returns the index of the `ASMACAG.Players.Player.Player` that is winning the `Game`.&#34;&#34;&#34;
+        if self.game_state.player_0_score &gt; self.game_state.player_1_score:
+            return 0
+        elif self.game_state.player_1_score &gt; self.game_state.player_0_score:
+            return 1
+        else:
+            return -1
+# endregion</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="ASMACAG.Game.Game.Game"><code class="flex name class">
+<span>class <span class="ident">Game</span></span>
+<span>(</span><span>parameters: <a title="ASMACAG.Game.GameParameters.GameParameters" href="GameParameters.html#ASMACAG.Game.GameParameters.GameParameters">GameParameters</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Contains the logic for playing the ASMACAG game with certain <code><a title="ASMACAG.Game.GameParameters.GameParameters" href="GameParameters.html#ASMACAG.Game.GameParameters.GameParameters">GameParameters</a></code>
+according to the rules defined in the <code><a title="ASMACAG.Game.Rules.ForwardModel.ForwardModel" href="Rules/ForwardModel.html#ASMACAG.Game.Rules.ForwardModel.ForwardModel">ForwardModel</a></code> they contain.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Game:
+    &#34;&#34;&#34;Contains the logic for playing the ASMACAG game with certain `ASMACAG.Game.GameParameters.GameParameters`
+    according to the rules defined in the `ASMACAG.Game.Rules.ForwardModel.ForwardModel` they contain. &#34;&#34;&#34;
+
+    def __init__(self, parameters: &#34;ASMACAG.Game.GameParameters.GameParameters&#34;):
+        self.save_file = None
+        self.game_state = GameModule.GameState(parameters)
+
+# region Methods
+    def reset(self) -&gt; None:
+        &#34;&#34;&#34;Resets the `ASMACAG.Game.GameState.GameState` so that is ready for a new `Game`.&#34;&#34;&#34;
+        self.game_state.reset()
+
+    def run(self, player_0: &#34;ASMACAG.Players.Player.Player&#34;, player_1: &#34;ASMACAG.Players.Player.Player&#34;, budget: float,
+            verbose: bool, enforce_time: bool) -&gt; None:
+        &#34;&#34;&#34;Runs an ASMACAG `Game`.&#34;&#34;&#34;
+        save_str = &#34;&#34;
+
+        if self.game_state.game_parameters.seed is None:
+            seed = random.randrange(sys.maxsize)
+        else:
+            seed = self.game_state.game_parameters.seed
+
+        random.seed(seed)
+        if self.save_file is not None:
+            save_str += f&#34;{seed}\n&#34;
+        if verbose:
+            print(&#34;&#34;)
+            print(&#34;*** ------------------------------------------------- &#34;)
+            print(f&#34;*** Game started with seed {seed}&#34;)
+            print(&#34;*** ------------------------------------------------- &#34;)
+
+        self.reset()
+
+        if self.save_file is not None:
+            save_str += f&#34;{self.game_state.game_parameters}\n&#34;
+            save_str += f&#34;{player_0!s} {player_1!s}\n&#34;
+            save_str += f&#34;{self.game_state.board!s}\n&#34;
+            save_str += f&#34;{self.game_state.player_0_hand!s}\n&#34;
+            save_str += f&#34;{self.game_state.player_1_hand!s}\n&#34;
+
+        players = [player_0, player_1]
+
+        # Run players&#39; turns while the game is not finished
+        while not self.game_state.game_parameters.forward_model.is_terminal(self.game_state):
+            action = self.play_turn(players[self.game_state.current_turn], budget, verbose, enforce_time)
+
+            if self.save_file is not None:
+                save_str += f&#34;{self.game_state.current_turn!s} {action!s}\n&#34;
+
+            self.game_state.game_parameters.forward_model.on_turn_ended(self.game_state)
+
+        if self.save_file is not None:
+            self.save_file.write(save_str)
+            self.save_file.close()
+
+    def play_turn(self, player: &#34;ASMACAG.Players.Player.Player&#34;, budget: float, verbose: bool,
+                  enforce_time: bool) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+        &#34;&#34;&#34;Performs a `ASMACAG.Players.Player.Player` turn.&#34;&#34;&#34;
+        if verbose:
+            print(&#34;&#34;)
+            print(&#34;---------------------------------------- &#34;)
+            print(f&#34;Player {self.game_state.current_turn} [{player!s}] turn&#34;)
+            print(&#34;---------------------------------------- &#34;)
+            print(f&#34;{self.game_state}\n&#34;)
+
+        while not self.game_state.game_parameters.forward_model.is_turn_finished(self.game_state):
+            # Observable part of the GameState
+            observation = self.game_state.get_observation()
+
+            # When enforce_time is True, the player has budget seconds to think.
+            # If they take more than that, a random action is played instead.
+            if enforce_time:
+                try:
+                    action = func_timeout.func_timeout(budget, self.think, args=[player, observation, budget])
+                except func_timeout.FunctionTimedOut:
+                    if verbose:
+                        print(&#34;Too much time thinking. A random action was selected!&#34;)
+                    action = self.random_action(observation)
+            else:
+                action = self.think(player, observation, budget)
+
+            if action is None:
+                if verbose:
+                    print(&#34;Player didn&#39;t return an action. A random action was selected!&#34;)
+                action = self.random_action(observation)
+
+            if verbose:
+                print(f&#34;Player {self.game_state.current_turn} selects {action!s}.&#34;)
+
+            self.game_state.game_parameters.forward_model.step(self.game_state, action)
+
+            if verbose:
+                print(f&#34;Score: [{self.game_state.player_0_score}] - [{self.game_state.player_1_score}]&#34;)
+            return action
+
+    def think(self, player: &#34;ASMACAG.Players.Player.Player&#34;, observation: &#34;ASMACAG.Game.Observation.Observation&#34;,
+              budget: float) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+        &#34;&#34;&#34;Requires the `ASMACAG.Players.Player.Player` to decide, given an `ASMACAG.Game.Observation.Observation`,
+        what `ASMACAG.Game.Action.Action` to play and returns it.&#34;&#34;&#34;
+        return player.think(observation, budget)
+
+    def random_action(self, observation: &#34;ASMACAG.Game.Observation.Observation&#34;) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+        &#34;&#34;&#34;Returns a random valid `ASMACAG.Game.Action.Action` for the state defined in the given
+        `ASMACAG.Game.Observation.Observation`.&#34;&#34;&#34;
+        actions = observation.get_actions()
+        return random.choice(actions)
+# endregion
+
+# region Getters and Setters
+    def set_save_file(self, filename: &#34;Optional[str]&#34;) -&gt; None:
+        &#34;&#34;&#34;Sets the file that the `Game` is saved to.&#34;&#34;&#34;
+        self.save_file = open(filename, &#34;w&#34;) if filename is not None else None
+
+    def get_winner(self) -&gt; int:
+        &#34;&#34;&#34;Returns the index of the `ASMACAG.Players.Player.Player` that is winning the `Game`.&#34;&#34;&#34;
+        if self.game_state.player_0_score &gt; self.game_state.player_1_score:
+            return 0
+        elif self.game_state.player_1_score &gt; self.game_state.player_0_score:
+            return 1
+        else:
+            return -1</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="ASMACAG.Game.Game.Game.get_winner"><code class="name flex">
+<span>def <span class="ident">get_winner</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the index of the <code><a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a></code> that is winning the <code><a title="ASMACAG.Game.Game.Game" href="#ASMACAG.Game.Game.Game">Game</a></code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_winner(self) -&gt; int:
+    &#34;&#34;&#34;Returns the index of the `ASMACAG.Players.Player.Player` that is winning the `Game`.&#34;&#34;&#34;
+    if self.game_state.player_0_score &gt; self.game_state.player_1_score:
+        return 0
+    elif self.game_state.player_1_score &gt; self.game_state.player_0_score:
+        return 1
+    else:
+        return -1</code></pre>
+</details>
+</dd>
+<dt id="ASMACAG.Game.Game.Game.play_turn"><code class="name flex">
+<span>def <span class="ident">play_turn</span></span>(<span>self, player: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, budget: float, verbose: bool, enforce_time: bool) ‑> <a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Performs a <code><a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a></code> turn.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def play_turn(self, player: &#34;ASMACAG.Players.Player.Player&#34;, budget: float, verbose: bool,
+              enforce_time: bool) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+    &#34;&#34;&#34;Performs a `ASMACAG.Players.Player.Player` turn.&#34;&#34;&#34;
+    if verbose:
+        print(&#34;&#34;)
+        print(&#34;---------------------------------------- &#34;)
+        print(f&#34;Player {self.game_state.current_turn} [{player!s}] turn&#34;)
+        print(&#34;---------------------------------------- &#34;)
+        print(f&#34;{self.game_state}\n&#34;)
+
+    while not self.game_state.game_parameters.forward_model.is_turn_finished(self.game_state):
+        # Observable part of the GameState
+        observation = self.game_state.get_observation()
+
+        # When enforce_time is True, the player has budget seconds to think.
+        # If they take more than that, a random action is played instead.
+        if enforce_time:
+            try:
+                action = func_timeout.func_timeout(budget, self.think, args=[player, observation, budget])
+            except func_timeout.FunctionTimedOut:
+                if verbose:
+                    print(&#34;Too much time thinking. A random action was selected!&#34;)
+                action = self.random_action(observation)
+        else:
+            action = self.think(player, observation, budget)
+
+        if action is None:
+            if verbose:
+                print(&#34;Player didn&#39;t return an action. A random action was selected!&#34;)
+            action = self.random_action(observation)
+
+        if verbose:
+            print(f&#34;Player {self.game_state.current_turn} selects {action!s}.&#34;)
+
+        self.game_state.game_parameters.forward_model.step(self.game_state, action)
+
+        if verbose:
+            print(f&#34;Score: [{self.game_state.player_0_score}] - [{self.game_state.player_1_score}]&#34;)
+        return action</code></pre>
+</details>
+</dd>
+<dt id="ASMACAG.Game.Game.Game.random_action"><code class="name flex">
+<span>def <span class="ident">random_action</span></span>(<span>self, observation: <a title="ASMACAG.Game.Observation.Observation" href="Observation.html#ASMACAG.Game.Observation.Observation">Observation</a>) ‑> <a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a random valid <code><a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></code> for the state defined in the given
+<code><a title="ASMACAG.Game.Observation.Observation" href="Observation.html#ASMACAG.Game.Observation.Observation">Observation</a></code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def random_action(self, observation: &#34;ASMACAG.Game.Observation.Observation&#34;) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+    &#34;&#34;&#34;Returns a random valid `ASMACAG.Game.Action.Action` for the state defined in the given
+    `ASMACAG.Game.Observation.Observation`.&#34;&#34;&#34;
+    actions = observation.get_actions()
+    return random.choice(actions)</code></pre>
+</details>
+</dd>
+<dt id="ASMACAG.Game.Game.Game.reset"><code class="name flex">
+<span>def <span class="ident">reset</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resets the <code><a title="ASMACAG.Game.GameState.GameState" href="GameState.html#ASMACAG.Game.GameState.GameState">GameState</a></code> so that is ready for a new <code><a title="ASMACAG.Game.Game.Game" href="#ASMACAG.Game.Game.Game">Game</a></code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset(self) -&gt; None:
+    &#34;&#34;&#34;Resets the `ASMACAG.Game.GameState.GameState` so that is ready for a new `Game`.&#34;&#34;&#34;
+    self.game_state.reset()</code></pre>
+</details>
+</dd>
+<dt id="ASMACAG.Game.Game.Game.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self, player_0: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, player_1: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, budget: float, verbose: bool, enforce_time: bool)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Runs an ASMACAG <code><a title="ASMACAG.Game.Game.Game" href="#ASMACAG.Game.Game.Game">Game</a></code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self, player_0: &#34;ASMACAG.Players.Player.Player&#34;, player_1: &#34;ASMACAG.Players.Player.Player&#34;, budget: float,
+        verbose: bool, enforce_time: bool) -&gt; None:
+    &#34;&#34;&#34;Runs an ASMACAG `Game`.&#34;&#34;&#34;
+    save_str = &#34;&#34;
+
+    if self.game_state.game_parameters.seed is None:
+        seed = random.randrange(sys.maxsize)
+    else:
+        seed = self.game_state.game_parameters.seed
+
+    random.seed(seed)
+    if self.save_file is not None:
+        save_str += f&#34;{seed}\n&#34;
+    if verbose:
+        print(&#34;&#34;)
+        print(&#34;*** ------------------------------------------------- &#34;)
+        print(f&#34;*** Game started with seed {seed}&#34;)
+        print(&#34;*** ------------------------------------------------- &#34;)
+
+    self.reset()
+
+    if self.save_file is not None:
+        save_str += f&#34;{self.game_state.game_parameters}\n&#34;
+        save_str += f&#34;{player_0!s} {player_1!s}\n&#34;
+        save_str += f&#34;{self.game_state.board!s}\n&#34;
+        save_str += f&#34;{self.game_state.player_0_hand!s}\n&#34;
+        save_str += f&#34;{self.game_state.player_1_hand!s}\n&#34;
+
+    players = [player_0, player_1]
+
+    # Run players&#39; turns while the game is not finished
+    while not self.game_state.game_parameters.forward_model.is_terminal(self.game_state):
+        action = self.play_turn(players[self.game_state.current_turn], budget, verbose, enforce_time)
+
+        if self.save_file is not None:
+            save_str += f&#34;{self.game_state.current_turn!s} {action!s}\n&#34;
+
+        self.game_state.game_parameters.forward_model.on_turn_ended(self.game_state)
+
+    if self.save_file is not None:
+        self.save_file.write(save_str)
+        self.save_file.close()</code></pre>
+</details>
+</dd>
+<dt id="ASMACAG.Game.Game.Game.set_save_file"><code class="name flex">
+<span>def <span class="ident">set_save_file</span></span>(<span>self, filename: Optional[str]) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sets the file that the <code><a title="ASMACAG.Game.Game.Game" href="#ASMACAG.Game.Game.Game">Game</a></code> is saved to.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_save_file(self, filename: &#34;Optional[str]&#34;) -&gt; None:
+    &#34;&#34;&#34;Sets the file that the `Game` is saved to.&#34;&#34;&#34;
+    self.save_file = open(filename, &#34;w&#34;) if filename is not None else None</code></pre>
+</details>
+</dd>
+<dt id="ASMACAG.Game.Game.Game.think"><code class="name flex">
+<span>def <span class="ident">think</span></span>(<span>self, player: <a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a>, observation: <a title="ASMACAG.Game.Observation.Observation" href="Observation.html#ASMACAG.Game.Observation.Observation">Observation</a>, budget: float) ‑> <a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Requires the <code><a title="ASMACAG.Players.Player.Player" href="../Players/Player.html#ASMACAG.Players.Player.Player">Player</a></code> to decide, given an <code><a title="ASMACAG.Game.Observation.Observation" href="Observation.html#ASMACAG.Game.Observation.Observation">Observation</a></code>,
+what <code><a title="ASMACAG.Game.Action.Action" href="Action.html#ASMACAG.Game.Action.Action">Action</a></code> to play and returns it.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def think(self, player: &#34;ASMACAG.Players.Player.Player&#34;, observation: &#34;ASMACAG.Game.Observation.Observation&#34;,
+          budget: float) -&gt; &#34;ASMACAG.Game.Action.Action&#34;:
+    &#34;&#34;&#34;Requires the `ASMACAG.Players.Player.Player` to decide, given an `ASMACAG.Game.Observation.Observation`,
+    what `ASMACAG.Game.Action.Action` to play and returns it.&#34;&#34;&#34;
+    return player.think(observation, budget)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ASMACAG.Game" href="index.html">ASMACAG.Game</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="ASMACAG.Game.Game.Game" href="#ASMACAG.Game.Game.Game">Game</a></code></h4>
+<ul class="two-column">
+<li><code><a title="ASMACAG.Game.Game.Game.get_winner" href="#ASMACAG.Game.Game.Game.get_winner">get_winner</a></code></li>
+<li><code><a title="ASMACAG.Game.Game.Game.play_turn" href="#ASMACAG.Game.Game.Game.play_turn">play_turn</a></code></li>
+<li><code><a title="ASMACAG.Game.Game.Game.random_action" href="#ASMACAG.Game.Game.Game.random_action">random_action</a></code></li>
+<li><code><a title="ASMACAG.Game.Game.Game.reset" href="#ASMACAG.Game.Game.Game.reset">reset</a></code></li>
+<li><code><a title="ASMACAG.Game.Game.Game.run" href="#ASMACAG.Game.Game.Game.run">run</a></code></li>
+<li><code><a title="ASMACAG.Game.Game.Game.set_save_file" href="#ASMACAG.Game.Game.Game.set_save_file">set_save_file</a></code></li>
+<li><code><a title="ASMACAG.Game.Game.Game.think" href="#ASMACAG.Game.Game.Game.think">think</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,24 +1,21 @@
+"""Class representing a 'bandit' that holds score data for a one-dimensional stat, to be used in the model for the
+NTBEA algorithm used by `ASMACAG.Players.NTBEA.NTBEAPlayer.NTBEAPlayer`."""
 import random
 import math
 
 
-# --------------------------------------------------------------
-# Bandit1D class
-# --------------------------------------------------------------
 class Bandit1D:
-    def __init__(self, c):
-        self.C = c            # C parameter of the UCB equation
-        self.score = dict()   # Mean score of each element of the bandit
-        self.n = dict()       # Number of times that each element of the bandit has been accesed
-        self.n_total = 0      # Number of times that the bandit has been accessed
+    """Class representing a 'bandit' that holds score data for a one dimensional value, to be used in the model for the
+    NTBEA algorithm used by `ASMACAG.Players.NTBEA.NTBEAPlayer.NTBEAPlayer`."""
+    def __init__(self, c: float):
+        self.C = c            # c parameter of the UCB equation
+        self.score = dict()   # mean score of each element of the bandit
+        self.n = dict()       # number of times that each element of the bandit has been accessed
+        self.n_total = 0      # number of times that the bandit itself has been accessed
 
-    # Returns the score of an existing element
-    def get_score(self, element):
-        return self.score[element]
-
-    # Updates the bandit with an element and its score
-    # If not exist yet, it is added
-    def update(self, element, score):
+# region Methods
+    def update(self, element: int, score: float) -> None:
+        """Updates the bandit with an element and its score. If it doesn't exist yet, it is added."""
         if element in self.score:
             self.score[element] = (self.score[element] * self.n[element] + score) / (self.n[element] + 1)
             self.n[element] += 1
@@ -26,23 +23,22 @@ class Bandit1D:
             self.score[element] = score
             self.n[element] = 1
         self.n_total += 1
+# endregion
 
-    # Returns the ucb value for an element
-    def ucb(self, element):
+# region Getters and Setters
+    def get_score(self, element: int) -> float:
+        """Returns the score of the given element."""
+        return self.score[element]
+
+    def get_ucb(self, element: int) -> float:
+        """Returns the ucb value for a given element."""
         if element in self.score:
             return self.score[element] + self.C * math.sqrt(math.log(self.n_total) / self.n[element])
         else:
-            return 10e6 + random.random()  # If the element is not in the bandit, returns a random big number
+            return 10e6 + random.random()  # If the element is not in the bandit, return a random big number
 
-    # This is the same than ucb but, in this case, when the element is not in the bandit returns 0.0
-    def ucb_final(self, element):
-        if element in self.score:
-            return self.score[element] + self.C * math.sqrt(math.log(self.n_total) / self.n[element])
-        else:
-            return 0
-
-    # Returns the element with the greater score
-    def get_element_best_score(self):
+    def get_element_best_score(self) -> int:
+        """Returns the element with the biggest score."""
         best_element = 0
         best_score = 0
         for element in self.score:
@@ -51,16 +47,30 @@ class Bandit1D:
                 best_element = int(element)
         return best_element
 
-    # Returns the element with the greater ucb
-    def get_element_best_ucb(self):
+    def get_element_best_ucb(self) -> int:
+        """Returns the element with the biggest ucb value."""
         best_element = 0
         best_ucb = 0
         for element in self.score:
-            ucb_value = self.ucb(element)
+            ucb_value = self.get_ucb(element)
             if ucb_value > best_ucb:
                 best_ucb = ucb_value
                 best_element = int(element)
         return best_element
+# endregion
 
+# region Overrides
     def __repr__(self):
         return str(self.score) + " " + str(self.n)
+# endregion
+
+
+
+
+
+
+
+
+
+
+

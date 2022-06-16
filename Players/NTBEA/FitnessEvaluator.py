@@ -1,28 +1,35 @@
-# ---------------------------------------
-# The Knn Fitness
-# ---------------------------------------
-# k, distance_function, data_representation, weights
-from Game import Action, Card, CardType, GameParameters
-from math import floor
+"""Class used to calculate the fitness of a turn decided by NTBEA. It needs to translate between an
+`ASMACAG.Game.Action.Action` list and the ints the `ASMACAG.Players.NTBEA.Bandit1D.Bandit1D` and
+`ASMACAG.Players.NTBEA.Bandit2D.Bandit2D` use."""
+from Game import Action, Card, CardType
 
 
 class FitnessEvaluator:
     def __init__(self, heuristic):
+        """Class used to calculate the fitness of a turn decided by NTBEA. It needs to translate between an
+        `ASMACAG.Game.Action.Action` list and the ints the `ASMACAG.Players.NTBEA.Bandit1D.Bandit1D` and
+        `ASMACAG.Players.NTBEA.Bandit2D.Bandit2D` use."""
         self.heuristic = heuristic
 
-    def evaluate(self, parameters, observation):
+# region Methods
+    def evaluate(self, parameters: list[int], observation: "ASMACAG.Game.Observation.Observation") -> float:
+        """Calculates the fitness of a turn given by NTBEA as a parameter list, playing it from the given
+        `ASMACAG.Game.Observation.Observation`."""
         turn = self.ntbea_to_turn(parameters)
         for action in turn:
             observation.game_parameters.forward_model.step(observation, action)
         return self.heuristic.get_reward(observation)
 
-    def ntbea_to_turn(self, ntbea_parameters):
+    def ntbea_to_turn(self, ntbea_parameters: list[int]) -> "list[ASMACAG.Game.Action.Action]":
+        """Converts a list of int parameters from NTBEA to a list of `ASMACAG.Game.Action.Action` representing a
+        turn."""
         turn = []
         for parameter in ntbea_parameters:
             turn.append(self.get_action_from_parameter(parameter))
         return turn
 
-    def get_action_from_parameter(self, parameter):
+    def get_action_from_parameter(self, parameter: int) -> "ASMACAG.Game.Action.Action":
+        """Converts an int parameter from NTBEA to an `ASMACAG.Game.Action.Action`."""
         if parameter < 2:
             return Action(Card(CardType(parameter+2)))
         elif parameter < 8:
@@ -38,8 +45,11 @@ class FitnessEvaluator:
         elif parameter < 38:
             return Action(Card(CardType.NUMBER, 6), Card(CardType.NUMBER, parameter - 31))
 
-    def get_parameter_from_action(self, action):
-        if action.get_played_card().get_type() == CardType.DIV2 or action.get_played_card().get_type() == CardType.MULT2:
+    def get_parameter_from_action(self, action: "ASMACAG.Game.Action.Action") -> int:
+        """Converts an `ASMACAG.Game.Action.Action` to an int parameter for NTBEA."""
+        if action.get_played_card().get_type() == CardType.DIV2 \
+                or action.get_played_card().get_type() == CardType.MULT2:
             return action.get_played_card().get_type().value - 2
         elif action.get_played_card().get_type() == CardType.NUMBER:
             return (action.get_played_card().get_number() - 1) * 6 + action.get_board_card().get_number() + 1
+# endregion

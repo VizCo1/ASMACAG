@@ -1,11 +1,11 @@
-"""Genome class representing a list of `ASMACAG.Game.Action.Action` composing a turn for use in both
-`ASMACAG.Players.OEPlayer.OEPlayer` and `ASMACAG.Players.NTBEAPlayer.NTBEAPlayer`."""
+"""Genome class representing a list of `ASMACAG.Game.Action.Action` composing a turn for use in
+`ASMACAG.Players.OE.OEPlayer.OEPlayer`."""
 import random
 
 
 class TurnGenome:
-    """Genome class representing a list of `ASMACAG.Game.Action.Action` composing a turn for use in both
-    `ASMACAG.Players.OEPlayer.OEPlayer` and `ASMACAG.Players.NTBEAPlayer.NTBEAPlayer`."""
+    """Genome class representing a list of `ASMACAG.Game.Action.Action` composing a turn for use in
+    `ASMACAG.Players.OE.OEPlayer.OEPlayer`."""
 
     def __init__(self) -> None:
         self.actions = []
@@ -13,7 +13,7 @@ class TurnGenome:
 
 # region Methods
     def random(self, observation: "ASMACAG.Game.Observation.Observation") -> None:
-        """Fills up this `ASMACAG.Players.TurnGenome.TurnGenome` with random valid `ASMACAG.Game.Action.Action`
+        """Fills up this `ASMACAG.Players.OE.TurnGenome.TurnGenome` with random valid `ASMACAG.Game.Action.Action`
         composing a turn. Note that the observation state is not preserved."""
         self.actions.clear()
         self.reward = 0
@@ -24,7 +24,7 @@ class TurnGenome:
 
     def crossover(self, parent_a: "TurnGenome", parent_b: "TurnGenome",
                   observation: "ASMACAG.Game.Observation.Observation") -> None:
-        """Fills up this `ASMACAG.Players.TurnGenome.TurnGenome` with `ASMACAG.Game.Action.Action` from both parents
+        """Fills up this `ASMACAG.Players.OE.TurnGenome.TurnGenome` with `ASMACAG.Game.Action.Action` from both parents
         while making sure that the resulting turn is valid. Note that the observation state is not preserved."""
         self.reward = 0
         for i in range(observation.game_parameters.amount_action_points):
@@ -52,7 +52,7 @@ class TurnGenome:
             observation.game_parameters.forward_model.step(observation, self.actions[i])
 
     def mutate_at_random_index(self, observation: "ASMACAG.Game.Observation.Observation") -> None:
-        """Mutates this `ASMACAG.Players.TurnGenome.TurnGenome` at a random `ASMACAG.Game.Action.Action` of the turn
+        """Mutates this `ASMACAG.Players.OE.TurnGenome.TurnGenome` at a random `ASMACAG.Game.Action.Action` of the turn
         while keeping the whole turn valid. Note that the observation state is not preserved."""
         mutation_index = random.randrange(len(self.actions))
         for i in range(len(self.actions)):
@@ -65,7 +65,7 @@ class TurnGenome:
             observation.game_parameters.forward_model.step(observation, self.actions[i])
 
     def clone(self) -> "TurnGenome":
-        """Returns a clone of this `ASMACAG.Players.TurnGenome.TurnGenome`."""
+        """Returns a clone of this `ASMACAG.Players.OE.TurnGenome.TurnGenome`."""
         clone = TurnGenome()
         clone.set_reward(self.get_reward())
         for action in self.get_actions():
@@ -73,7 +73,7 @@ class TurnGenome:
         return clone
 
     def copy_into(self, other: "TurnGenome") -> None:
-        """Copies this `ASMACAG.Players.TurnGenome.TurnGenome` into another one."""
+        """Copies this `ASMACAG.Players.OE.TurnGenome.TurnGenome` into another one."""
         other.set_reward(self.get_reward())
         for i in range(len(self.get_actions())):
             if i < len(other.get_actions()):
@@ -84,15 +84,15 @@ class TurnGenome:
 
 # region Getters and Setters
     def get_actions(self) -> "list[ASMACAG.Game.Action.Action]":
-        """Returns the list of `ASMACAG.Game.Action.Action` composing this `ASMACAG.Players.TurnGenome.TurnGenome`."""
+        """Returns the list of `ASMACAG.Game.Action.Action` of this `ASMACAG.Players.OE.TurnGenome.TurnGenome`."""
         return self.actions
 
     def get_reward(self) -> float:
-        """Returns the reward of this `ASMACAG.Players.TurnGenome.TurnGenome`."""
+        """Returns the reward of this `ASMACAG.Players.OE.TurnGenome.TurnGenome`."""
         return self.reward
 
     def set_reward(self, reward: float) -> None:
-        """Sets the reward of this `ASMACAG.Players.TurnGenome.TurnGenome`."""
+        """Sets the reward of this `ASMACAG.Players.OE.TurnGenome.TurnGenome`."""
         self.reward = reward
 # endregion
 

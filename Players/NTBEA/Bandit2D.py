@@ -1,26 +1,24 @@
-import random
+"""Class representing a 'bandit' that holds score data for a two-dimensional stat (an ordered pair), to be used in the
+model for the NTBEA algorithm used by `ASMACAG.Players.NTBEA.NTBEAPlayer.NTBEAPlayer`."""
 import math
+import random
+from typing import Tuple
 
 
-# --------------------------------------------------------------
-# Bandit class
-# --------------------------------------------------------------
 class Bandit2D:
-    def __init__(self, c):
-        self.C = c           # C parameter of the UCB equation
-        self.score = dict()  # Mean score of each element of the bandit
-        self.n = dict()      # Number of times that each element of the bandit has been accesed
-        self.n_total = 0     # Number of times that the bandit has been accessed
-        self.factor = 1000   # A pair of elements [e1,e2] will be transformed to e1*factor+e2 to be an unique element
+    """Class representing a 'bandit' that holds score data for a two-dimensional stat (an ordered pair), to be used in
+    the model for the NTBEA algorithm used by `ASMACAG.Players.NTBEA.NTBEAPlayer.NTBEAPlayer`."""
+    def __init__(self, c: float):
+        self.C = c            # c parameter of the UCB equation
+        self.score = dict()   # mean score of each element of the bandit
+        self.n = dict()       # number of times that each element of the bandit has been accessed
+        self.n_total = 0      # number of times that the bandit itself has been accessed
+        self.factor = 1000    # a pair of elements [e1,e2] will be transformed to e1*factor+e2 to be an unique element
+        # the factor needs to be bigger than the number of possible values per dimension
 
-    # Returns the score of an existing pair of elements
-    def get_score(self, element1, element2):
-        element = self.get_element(element1, element2)
-        return self.score[element]
-
-    # Updates the bandit with a pair of elements and its score
-    # If not exist yet, it is added
-    def update(self, element1, element2, score):
+# region Methods
+    def update(self, element1: int, element2: int, score: float) -> None:
+        """Updates the bandit with a pair of elements and its score. If it doesn't exist yet, it is added."""
         element = self.get_element(element1, element2)   # From two elements to just one
         if element in self.score:
             self.score[element] = (self.score[element] * self.n[element] + score) / (self.n[element] + 1)
@@ -30,24 +28,33 @@ class Bandit2D:
             self.n[element] = 1
         self.n_total += 1
 
-    # Returns the ucb value for a pair of elements
-    def ucb(self, element1, element2):
+    def get_element(self, element1: int, element2: int) -> int:
+        """Transforms a pair of elements int a unique individual element."""
+        return element1 * self.factor + element2
+
+    def get_elements(self, element: int) -> (int, int):
+        """Transforms an individual element back to the pair of elements in encodes."""
+        element1 = element // self.factor
+        element2 = element % self.factor
+        return element1, element2
+# endregion
+
+# region Getters and Setters
+    def get_score(self, element1: int, element2: int) -> float:
+        """Returns the score of a given pair of elements."""
+        element = self.get_element(element1, element2)
+        return self.score[element]
+
+    def get_ucb(self, element1: int, element2: int) -> float:
+        """Returns the ucb value for a given pair of elements."""
         element = self.get_element(element1, element2)
         if element in self.score:
             return self.score[element] + self.C * math.sqrt(math.log(self.n_total) / self.n[element])
         else:
-            return 10e6 + random.random()  # If the element is not in the bandit, returns a random big number
+            return 10e6 + random.random()  # If the element is not in the bandit, return a random big number
 
-    # This is the same than ucb but, in this case, when the element is not in the bandit returns 0.0
-    def ucb_final(self, element1, element2):
-        element = self.get_element(element1, element2)
-        if element in self.score:
-            return self.score[element] + self.C * math.sqrt(math.log(self.n_total) / self.n[element])
-        else:
-            return 0
-
-    # Returns the pair of elements with the greater score
-    def get_elements_best_score(self):
+    def get_elements_best_score(self) -> "Tuple[int, int]":
+        """Returns the pair of elements with the biggest score."""
         best_element = 0
         best_score = 0
         for element in self.score:
@@ -57,30 +64,21 @@ class Bandit2D:
         element1, element2 = self.get_elements(best_element)
         return element1, element2
 
-    # Returns the pair of elements with the greater ucb
-    def get_elements_best_ucb(self):
+    def get_elements_best_ucb(self) -> "Tuple[int, int]":
+        """Returns the pair of elements with the biggest ucb value."""
         best_element = 0
         best_ucb = 0
         for element in self.score:
             element1, element2 = self.get_elements(element)
-            ucb_value = self.ucb(element1, element2)
+            ucb_value = self.get_ucb(element1, element2)
             if ucb_value > best_ucb:
                 best_ucb = ucb_value
                 best_element = int(element)
         element1, element2 = self.get_elements(best_element)
         return element1, element2
+# endregion
 
-    # From a pair of elements to the unique one
-    # e.g [2,3] will be tranformed to 2*factor + 3
-    def get_element(self, element1, element2):
-        return element1 * self.factor + element2
-
-    # From an elemento to a pair of them
-    # e.g. if factor is 1000, an element 2005, will be tranformed in the pair [2,5]
-    def get_elements(self, element):
-        element1 = element // self.factor
-        element2 = element % self.factor
-        return element1, element2
-
+# region Overrides
     def __repr__(self):
         return str(self.score) + " " + str(self.n)
+# endregion

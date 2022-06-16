@@ -1,6 +1,4 @@
-"""Module containing the rules to play an ASMACAG `ASMACAG.Game.Game.Game` as
+"""Module containing the rules to play an ASMACAG `ASMACAG.Game.Game.Game`, each rule set is a class inheriting from
 `ASMACAG.Game.Rules.ForwardModel.ForwardModel`."""
-# import all the separate files to make the Rules folder act as a single module
 from Game.Rules.ForwardModel import ForwardModel
 from Game.Rules.SimpleForwardModel import SimpleForwardModel
-

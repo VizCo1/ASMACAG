@@ -1,16 +1,16 @@
 """Entity that plays a `ASMACAG.Game.Game.Game` by selecting the best `ASMACAG.Game.Action.Action` found with a greedy
 one step lookahead search based on an `ASMACAG.Heuristics.Heuristic.Heuristic`."""
 import math
-from Heuristics import SimpleHeuristic
 from Players import Player
 
 
 class OSLAPlayer(Player):
     """Entity that plays a `ASMACAG.Game.Game.Game` by selecting the best `ASMACAG.Game.Action.Action` found with a
     greedy one step lookahead search based on an `ASMACAG.Heuristics.Heuristic.Heuristic`."""
-    def __init__(self):
-        self.heuristic = SimpleHeuristic()
+    def __init__(self, heuristic: "ASMACAG.Heuristics.Heuristic.Heuristic"):
+        self.heuristic = heuristic
 
+# region Methods
     def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: float) -> "ASMACAG.Game.Action.Action":
         """Returns a randomly selected valid `ASMACAG.Game.Action.Action` to play given an
         `ASMACAG.Game.Observation.Observation`."""
@@ -25,6 +25,9 @@ class OSLAPlayer(Player):
                 best_action = action
                 best_reward = reward
         return best_action
+# endregion
 
+# region Overrides
     def __str__(self):
         return "OSLAPlayer"
+# endregion

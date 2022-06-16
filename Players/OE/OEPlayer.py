@@ -2,17 +2,15 @@
  `ASMACAG.Game.Action.Action` composing a turn."""
 import random
 import time
-
-from Game import CardType
 from Players import Player
-from Players.Shared import TurnGenome
+from Players.OE.TurnGenome import TurnGenome
 
 
 class OEPlayer(Player):
     """Entity that plays a `ASMACAG.Game.Game.Game` by using the Online Evolution algorithm to evolve a list of
      `ASMACAG.Game.Action.Action` composing a turn."""
-    def __init__(self, population_size: int, mutation_rate: float, survival_rate: float,
-                 heuristic: "ASMACAG.Game.Heuristic.Heuristic") -> None:
+    def __init__(self, heuristic: "ASMACAG.Heuristics.Heuristic.Heuristic", population_size: int, mutation_rate: float,
+                 survival_rate: float) -> None:
         self.population_size = population_size
         self.mutation_rate = mutation_rate
         self.survival_rate = survival_rate
@@ -22,8 +20,8 @@ class OEPlayer(Player):
 
 # region Methods
     def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: float) -> "ASMACAG.Game.Action.Action":
-        """Returns a randomly selected valid `ASMACAG.Game.Action.Action` to play given an
-        `ASMACAG.Game.Observation.Observation`."""
+        """Computes a list of `ASMACAG.Game.Action.Action` for a complete turn using the Online Evolution
+        algorithm and returns them in order each time it's called during the turn."""
         if observation.action_points_left == observation.game_parameters.amount_action_points:
             self.turn.clear()
             self.compute_turn(observation, budget)

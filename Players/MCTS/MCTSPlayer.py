@@ -18,7 +18,7 @@ class MCTSPlayer(Player):
 # region Methods
     def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: float) -> "ASMACAG.Game.Action.Action":
         """Computes a list of `ASMACAG.Game.Action.Action` for a complete turn using the Monte Carlo Tree Search
-        algorithm and returns them in order."""
+        algorithm and returns them in order each time it's called during the turn."""
         if observation.action_points_left == observation.game_parameters.amount_action_points:
             self.turn.clear()
             self.compute_turn(observation, budget)
@@ -35,9 +35,9 @@ class MCTSPlayer(Player):
         current_node = root
 
         # main loop
-        # note that the 0.12 value must be enough to transverse the tree, so low spec computers or more complex rule
-        # sets and parameters may need it bumped up, tested working properly with the default parameters on an
-        # IntelCore i7-4790 CPU @ 3.60GHz running Ubuntu 20.04.4 LTS and Python 3.9.7
+        # note that the 0.12 value must be enough seconds to transverse the tree, so low spec computers or more complex
+        # rule sets and parameters may need it bumped up, tested working properly with the default parameters on an
+        # Intel Core i7-4790 CPU @ 3.60GHz running Ubuntu 20.04.4 LTS and Python 3.9.7
         while time.time() - t0 < budget - 0.12:
             best_child = current_node.get_best_child_by_ucb(self.c_value)
             if best_child.get_amount_of_children() > 0:
@@ -59,5 +59,5 @@ class MCTSPlayer(Player):
 
 # region Overrides
     def __str__(self):
-        return "MCTSPlayer" + str(self.c_value)
+        return f"MCTSPlayer[{self.c_value}]"
 # endregion

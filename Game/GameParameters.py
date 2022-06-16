@@ -18,7 +18,7 @@ class GameParameters:
                  amount_cards_div2=6,
                  seed=None,
                  randomise_hidden_info=True,
-                 forward_model: Rules.ForwardModel = Rules.SimpleForwardModel()):
+                 forward_model: "ASMACAG.Game.Rules.ForwardModel.ForwardModel" = Rules.SimpleForwardModel()):
         self.amount_cards_on_hand = amount_cards_on_hand
         self.amount_cards_on_board = amount_cards_on_board
         self.amount_action_points = amount_action_points
