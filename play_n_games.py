@@ -80,6 +80,7 @@ if __name__ == '__main__':
             players.reverse()
 
         save_file.write(f"{first_player_wins!s},{second_player_wins!s},{ties!s}\n")
+        save_file.flush()
         initial_players.pop(0)
         initial_players.pop(0)
     save_file.close()
