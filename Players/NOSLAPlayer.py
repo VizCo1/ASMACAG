@@ -7,11 +7,9 @@ from Players import Player
 class NOSLAPlayer(Player):
     def __init__(self, heuristic: "ASMACAG.Heuristics.Heuristic.Heuristic"):
         self.heuristic = heuristic
-        self.turn = []
 
 # region Methods
     def think(self, observation: "ASMACAG.Game.Observation.Observation", budget: float) -> "ASMACAG.Game.Action.Action":
-        ##current_observation = observation.clone()
         t0 = time.time()
         best_reward = -math.inf
         best_actions = []

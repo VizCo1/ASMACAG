@@ -1,2 +1,8 @@
 NOSLAPlayer,OSLAPlayer
 63,36,1
+NOSLAPlayer,MCTSPlayer[8]
+65,31,4
+NOSLAPlayer,OEPlayer[125][0.15][0.15]
+50,50,0
+NOSLAPlayer,RandomPlayer
+97,3,0
