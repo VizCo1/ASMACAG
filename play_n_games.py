@@ -3,10 +3,10 @@
 from Game import *
 from Players import *
 from Heuristics import *
-
+from Players.NOSLAPlayer import NOSLAPlayer
 
 if __name__ == '__main__':
-    amount_of_games = 1000                              # number of games to play
+    amount_of_games = 100                              # number of games to play
     budget = 1                                          # time to think for the players (in seconds)
     verbose = False                                     # whether to print messages
     enforce_time = True                                 # whether the player time to think is going to be enforced
@@ -14,26 +14,13 @@ if __name__ == '__main__':
     save_name = f"out/final.csv"                        # where the games' summary is going to be saved
     save_file = open(save_name, "w")
     dimensions = [38, 38, 38]
-    initial_players = [RandomPlayer(), OSLAPlayer(SimpleHeuristic()),
+    initial_players = [NOSLAPlayer(SimpleHeuristic()), OSLAPlayer(SimpleHeuristic()),
 
-                       RandomPlayer(), MCTSPlayer(SimpleHeuristic(), 8),
+                       NOSLAPlayer(SimpleHeuristic()), MCTSPlayer(SimpleHeuristic(), 8),
 
-                       RandomPlayer(), OEPlayer(SimpleHeuristic(), 125, 0.15, 0.15),
+                       NOSLAPlayer(SimpleHeuristic()), OEPlayer(SimpleHeuristic(), 125, 0.15, 0.15),
 
-                       RandomPlayer(), NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 5, 0.55, 1000),
-
-                       OSLAPlayer(SimpleHeuristic()), MCTSPlayer(SimpleHeuristic(), 8),
-
-                       OSLAPlayer(SimpleHeuristic()), OEPlayer(SimpleHeuristic(), 125, 0.15, 0.15),
-
-                       OSLAPlayer(SimpleHeuristic()), NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 5, 0.55, 1000),
-
-                       MCTSPlayer(SimpleHeuristic(), 8), OEPlayer(SimpleHeuristic(), 125, 0.15, 0.15),
-
-                       MCTSPlayer(SimpleHeuristic(), 8), NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 5, 0.55, 1000),
-
-                       OEPlayer(SimpleHeuristic(), 125, 0.15, 0.15),
-                       NTBEAPlayer(SimpleHeuristic(), dimensions, 8, 5, 0.55, 1000)]
+                       NOSLAPlayer(SimpleHeuristic()), RandomPlayer()]
 
     while len(initial_players) > 0:
         players = initial_players[:2].copy()

@@ -2,15 +2,15 @@
 from Game import *
 from Players import *
 from Heuristics import SimpleHeuristic
-
+from Players.NOSLAPlayer import NOSLAPlayer
 
 if __name__ == '__main__':
     budget = 2                                       # time to think for the players (in seconds)
     verbose = True                                   # whether to print messages
-    enforce_time = False                             # whether the player time to think is going to be enforced
+    enforce_time = True                             # whether the player time to think is going to be enforced
     save_name = "out/sample_output.txt"              # where the game is going to be saved, can be None
     parameters = GameParameters()                    # parameters for the game itself, set seed here to repeat a game
-    players = [RandomPlayer(), OSLAPlayer(SimpleHeuristic())]         # list of players
+    players = [NOSLAPlayer(SimpleHeuristic()), OSLAPlayer(SimpleHeuristic())]         # list of players
 
     game = Game(parameters)
     game.set_save_file(save_name)
